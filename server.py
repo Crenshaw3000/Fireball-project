@@ -1,11 +1,11 @@
 """Server for movie ratings app."""
-from flask import (Flask, render_template, request, flash, session,
-                   redirect)
+from flask import Flask, render_template, request, flash, session,redirect
 from model import connect_to_db, db
 import crud
 from jinja2 import StrictUndefined
 
 app = Flask(__name__)
+app.secret_key = "dev"
 app.jinja_env.undefined = StrictUndefined
 
 
@@ -26,16 +26,16 @@ def about():
 
 
 @app.route('/data_visualization')
-def about():
+def data_visualization():
     """View Data Visualization page"""
     
     return render_template("data_visualization.html")
 
 
 @app.route('/prediction')
-def about():
+def  prediction():
     """View fireball prediction model page"""
-    
+
     return render_template("prediction.html")
 
 
@@ -69,7 +69,7 @@ def login_user():
     match = crud.check_email_and_pass(email, password)
 
     if not match:
-        flash("This email is not correct. Check again.")
+        flash("This email is not correct. Try again.")
     else:
         session["user_email"]=match.email
         flash("Logged in!")
