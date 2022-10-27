@@ -25,6 +25,9 @@ def get_saved_location(user, locator):
 
     return save
 
+def get_user_individual(email):
+    return User.query.get(email)
+    
 def get_user_by_email(email):
     return User.query.filter(User.email == email).first()
 

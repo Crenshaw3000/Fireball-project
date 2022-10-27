@@ -76,7 +76,13 @@ def login_user():
     
     return redirect("/")
 
+@app.route('/users/<email>')
+def show_user_details(email):
 
+    user = crud.get_user_individual(email)
+    saved = user.saved
+
+    return render_template("user_details.html", user=user, saved=saved)
 
 if __name__ == "__main__":
     connect_to_db(app)
