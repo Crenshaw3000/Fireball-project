@@ -10,9 +10,9 @@ def create_user(fname, lname, email, password):
 
     return user
 
-def create_location(date, latitude, longitude):
+def create_location(date, latitude, longitude, energy):
     """Create and return new locator"""
-    locator = Locator(date=date, latitude=latitude, longitude=longitude)
+    locator = Locator(date=date, latitude=latitude, longitude=longitude, energy=energy)
 
     return locator
 

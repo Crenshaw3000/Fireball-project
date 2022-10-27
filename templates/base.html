@@ -17,7 +17,7 @@ user -->
 
 <!-- create a new fireball location
 from datetime import datetime
-loc = Locator(latitude= 26, longitude=165, date=datetime.now())
+loc = Locator(date=datetime.now(), latitude= '26.3N', longitude='165.8E', energy=-2.2)
 db.session.add(loc)
 db.session.commit()
 
@@ -51,5 +51,4 @@ new_saves=Saved(user=new_user, locator =new_locator)
 db.session.add(new_saves)
 db.session.commit() -->
 
-Tests for crud.py
 

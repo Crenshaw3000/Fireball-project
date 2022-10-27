@@ -30,9 +30,11 @@ class Locator(db.Model):
     locator_id = db.Column(db.Integer,
                         autoincrement= True,
                         primary_key= True)
-    latitude = db.Column(db.Integer)
-    longitude = db.Column(db.Integer)
+    
     date = db.Column(db.DateTime)
+    latitude = db.Column(db.String)
+    longitude = db.Column(db.String)
+    energy = db.Column(db.Float)
 
     saved = db.relationship("Saved", back_populates="locator")
 
