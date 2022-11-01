@@ -32,13 +32,31 @@ class Locator(db.Model):
                         primary_key= True)
     
     date = db.Column(db.DateTime)
-    latitude = db.Column(db.String)
-    longitude = db.Column(db.String)
+    latitude = db.Column(db.Float)
+    longitude = db.Column(db.Float)
     energy = db.Column(db.Float)
 
     saved = db.relationship("Saved", back_populates="locator")
 
+    # def __init__(self,
+    #                 locator_id,
+    #                 date,
+    #                 latitude,
+    #                 longitude,
+    #                 energy):
+
+    #         """Create a fireball."""
+
+    #         self.locator_id = locator_id
+    #         self.date = date
+    #         self.latitude = latitude
+    #         self.longitude = longitude
+    #         self.energy = energy
+
+
     def __repr__(self):
+        # repr_str = "<Locator locator_id={locator_id}>"
+
         return f'</Locator locator_id={self.locator_id} latitude={self.latitude}> longitude={self.longitude}>'
 
 class Saved(db.Model):

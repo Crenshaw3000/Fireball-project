@@ -1,0 +1,28 @@
+div.window-content {
+    overflow: hidden;
+    display: flex;
+    max-width: 300px;
+  }
+  
+  .fireball-thumbnail {
+    flex: 1 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .fireball-thumbnail img {
+    width: 100%;
+  }
+  
+  .window-content ul {
+    flex: 1 0;
+    list-style: none;
+    padding: 0;
+    margin: 1em 0 1em 1em;
+  }
+  
+  img[src='/static/images/fireball.svg'] {
+    filter: drop-shadow(0 0 3px #2056c033);
+  }
+  

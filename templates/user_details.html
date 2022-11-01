@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ user.email }}'s Page{% endblock %}
+
+{% block body %}
+<h1>{{ user.email }}</h1>
+<ul>
+{% for save in user.saved %}
+    <li>
+        {{  saved.user.saved }}:
+        <span class=saved_loc_{{ locator.locator_id}} >
+            {{ saves.locator }}
+        </span>
+    </li>
+{% endfor %}
+</ul>
+{% endblock %}
