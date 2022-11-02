@@ -47,8 +47,8 @@ function initMap() {
             <li><b>Fireball latitude: </b>${fireball.latitude}</li>
             <li><b>Fireball longitude: </b>${fireball.longitude}</li>
             <li><b>Impact energy (kt): </b>${fireball.ImpactEnergy}</li>
-            
-            <input type="hidden" id="fireball_id" name="fireball_data" value=fireball.id>
+
+            // <input type="hidden" id="fireball_id" name="fireball_data" value=fireball.id>
           </ul>
         </div>
       `;
@@ -80,8 +80,8 @@ function initMap() {
   
     `);
     });
-    document.querySelector(#save_fireball).addEventListener('click', () => {
-      const fireball_id = document.querySelector(#fireball_id)
-      console.log(fireball_id)
-    }
+    // document.querySelector(#save_fireball).addEventListener('click', () => {
+    //   const fireball_id = document.querySelector(#fireball_id)
+    //   console.log(fireball_id)
+    // }
   }

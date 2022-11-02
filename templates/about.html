@@ -2,16 +2,90 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width" initial-scale=2">
+    <style>
+      .accordion {
+        background-color: blue;
+        color: white;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+        transition: 0.4s;
+      }
+      
+      .active, .accordion:hover {
+        background-color: #ccc; 
+      }
+      .accordion:after {
+        content: '\002B';
+        color: grey;
+        font-weight: bold;
+        float: right;
+        margin-left: 5px;
+      }
+
+      .active:after {
+        content: "\2212";
+      }
+      .panel {
+        padding: 0 18px;
+        display: none;
+        background-color: white;
+        overflow: hidden;
+      }
+      </style>
+      </head>
+
     <title>
-      {% block title %}{% endblock %}
+      {% block title %}About{% endblock %}
     </title>
 
-    {% block head %}{% endblock %}
+    {% block head %}
+    <nav>
+      <section id="links-right">
+        <a href="/">home</a>
+      </section>
+    </nav>
+    {% endblock %}
   </head>
   <body>
     {% block body %}{% endblock %}
+    <h2>About</h2>
+    <button class="accordion">Where does the data come from?</button>
+    <div class="panel">
+      <p>The data used in the app is from  <a href="https://cneos.jpl.nasa.gov/fireballs/" target="_blank"> NASA's fireball and bollide data</a>  released April 2022. </p>
+    </div>
 
+    <button class="accordion">Why was this site created?</button>
+    <div class="panel">
+      <p>This site was created as a capstone project for Hackbright Academy's software engineering bootcamp. </p>
+    </div>
+
+    <button class="accordion">Who created the site?</button>
+    <div class="panel">
+      <p>This site was created by <a href="https://www.linkedin.com/in/shirley-c-83606080/" target="_blank"> Dr. Shirley Crenshaw</a>. Dr. Crenshaw is a trained analytical chemist that enjoys working with data and is transitioning into the filed of software engineering and data science. </p>
+    </div>
+
+    <script>
+      var acc = document.getElementsByClassName("accordion");
+      var i;
+      
+      for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function() {
+          this.classList.toggle("active");
+          var panel = this.nextElementSibling;
+          if (panel.style.display === "block") {
+            panel.style.display = "none";
+          } else {
+            panel.style.display = "block";
+          }
+        });
+      }
+      </script>
     {% block after_body %}{% endblock %}
   </body>
 </html>

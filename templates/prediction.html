@@ -4,14 +4,47 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>
-      {% block title %}{% endblock %}
+      {% block title %}Fireball Predictions{% endblock %}
     </title>
 
-    {% block head %}{% endblock %}
+    {% block head %}
+    <nav>
+      <section id="links-right">
+        <a href="/">home</a>
+      </section>
+    </nav>
+    {% endblock %}
   </head>
-  <body>
-    {% block body %}{% endblock %}
 
-    {% block after_body %}{% endblock %}
+  <body>
+    <h1 style="color: black">
+      Fireball Predictions
+    </h1>
+    <b>
+      Will there be more fireball in "pick year" than 2021?
+    </b>
+   
+    <p> Select one from the given options:
+        <select id="prediction">
+            <option value="Yes, there will be 39 fireball events in 2022.">2022</option>
+            <option value="Yes, there will be 40 fireball events in 2023.">2023</option>
+            <option value="Yes, there will be 47 fireball events in 2040.">2040</option>
+        </select>
+    </p>
+
+    <p> The prediction is:
+      <span class="output"></span>
+    </p>
+
+
+    <button onclick="getOption()"> Submit</button>
+    
+    <script type="text/javascript">
+    function getOption() {
+        selectElement = document.querySelector('#prediction');
+        output = selectElement.value;
+        document.querySelector('.output').textContent = output;
+    }
+    </script>
   </body>
 </html>

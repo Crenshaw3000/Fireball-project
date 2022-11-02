@@ -4,12 +4,33 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>
-      {% block title %}{% endblock %}
+      {% block title %}Data Visualization{% endblock %}
     </title>
 
     {% block head %}{% endblock %}
+    <nav>
+      <section id="links-right">
+        <a href="/">home</a>
+      </section>
+    </nav>
   </head>
   <body>
+    <h2>Data Visualization</h2>
+
+   
+    <img src="/static/images/Frequency of Impact Energy.png" alt="Frequency of Impact Energy">
+    <p> Fig. text</p>
+
+    <img src="/static/images/Total Fireball Events Per Year.png" alt="Total Fireball Events Per Year">
+    <p> Fig. text</p>
+
+
+    <img src="/static/images/Test Train split for Fireball Prediction.png" alt="Test Train split for Fireball Prediction">
+    <p> Fig. text</p>
+
+    <img src="/static/images/Machine Learning Model for Fireball Prediction.png" alt="Machine Learning Model for Fireball Prediction">
+    <p> Fig. text</p>
+
     {% block body %}{% endblock %}
 
     {% block after_body %}{% endblock %}
