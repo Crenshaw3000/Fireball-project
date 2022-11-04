@@ -1,16 +1,25 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ user.email }}'s Page{% endblock %}
+{% block title %} Hello {{ user.fname }} {% endblock %}
 
 {% block body %}
-<h1>{{ user.email }}</h1>
+<h1>Profile</h1>
+<nav>
+    <section id="links-right">
+      <a href="/">home</a>
+    </section>
+  </nav>
+
 <ul>
-{% for save in user.saved %}
+<!-- {% for save in user.saved %} -->
     <li>
-        {{  saved.user.saved }}:
+        {{ user.email }}
+        {{user.password}}
+
+        <!-- {{  saved.user.saved }}:
         <span class=saved_loc_{{ locator.locator_id}} >
             {{ saves.locator }}
-        </span>
+        </span> -->
     </li>
 {% endfor %}
 </ul>

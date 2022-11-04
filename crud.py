@@ -11,23 +11,33 @@ def create_user(fname, lname, email, password):
     return user
 
 def create_location(date, latitude, longitude, energy):
-    """Create and return new locator"""
+    """Create and return new  locator"""
     locator = Locator(date=date, latitude=latitude, longitude=longitude, energy=energy)
 
     return locator
 
-# def get_location_by_coordinates(locator_id):
-    # return Locator.query.get(locator_id)
+def get_fireballs():
+    """Return all fireballs"""
+    return Locator.query.all()
 
-def get_saved_location(user, locator):
+def get_location_by_coordinates(locator_id):
+    """Get location by locator_id"""
+    return Locator.query.get(locator_id)
+
+def create_saved_location(user, locator):
     """Create and return new saved location for user"""
     save = Saved(user=user, locator=locator)
 
     return save
 
+def get_saves_by_user(user_id):
+    """Returns all saves by user user  id"""
+    return Saved.query.filter(Saved.user_id == user_id).all()
+
+
 def get_user_individual(email):
     return User.query.get(email)
-    
+
 def get_user_by_email(email):
     return User.query.filter(User.email == email).first()
 

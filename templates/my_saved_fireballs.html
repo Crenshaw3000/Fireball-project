@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}  {{ user.fname }}'s Saved Fireballs {% endblock %}
+
+{% block body %}
+<h1>Profile</h1>
+<nav>
+    <section id="links-right">
+      <a href="/">home</a>
+    </section>
+  </nav>
+
+<ul>
+{% for fireball in my_saves %}
+    <li>
+        {{ fireball.locator.latitude }}
+        {{ fireball.locator.longitude }}
+        {{ fireball.locator. energy }}
+
+    </li>
+{% endfor %}
+</ul>
+{% endblock %}

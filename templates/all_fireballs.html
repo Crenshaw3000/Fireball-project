@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+<nav>
+    <section id="links-right">
+      <a href="/">home</a>
+    </section>
+</nav>
+
+{% block body %}
+<h1>All fireballs</h1>
+<ul>
+    {% for fireball in fireballs %}
+    <li>
+        <a href="/fireballs/{{ fireball.locator_id }}">
+        {{ fireball.date }}
+    </li>
+{% endfor %}
+</ul>
+{% endblock %}

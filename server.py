@@ -1,11 +1,10 @@
 """Server for movie ratings app."""
 
 from flask import Flask, render_template, request, flash, session,redirect, jsonify, send_from_directory
-from model import Locator, connect_to_db, db
+from model import Locator, User, Saved, connect_to_db, db
 import crud
 from jinja2 import StrictUndefined
 import os
-
 
 app = Flask(__name__)
 app.secret_key = "dev"
@@ -85,13 +84,23 @@ def login_user():
     
     return redirect("/")
 
-@app.route('/users/<email>')
-def show_user_details(email):
+@app.route('/user_details')
+def show_user_details():
 
-    user = crud.get_user_individual(email)
-    saved = user.saved
+    email = request.form.get("email")
+    user = crud.get_user_by_email(email)
+    # saves = Saved.query.all()
 
-    return render_template("user_details.html", user=user, saved=saved)
+    if email not in session:
+        flash("You are not logged-in")
+    
+    # user = User.query.get(session['user_email'])
+    # email=session.get("user_email")
+
+    # saved = user.saved
+    # if user==email:
+
+    return render_template("user_details.html", user=user)
 
 @app.route("/map/fireballs")
 def view_fireball_map():
@@ -112,22 +121,95 @@ def fireball_info():
             "longitude": locator.longitude,
             "ImpactEnergy": locator.energy
         }
-        for locator in Locator.query.limit(50)
+        for locator in Locator.query.limit(150)
     ]
     print(fireballs)
     return jsonify(fireballs)
 
-# def convert():
-#     if 'N' or 'E' in locator.latitude:
-#         .replace('N', ' ')
-#     if 'E' in locator.latitude:
-#          .replace('E, ' ')
+@app.route("/fireballs")
+def all_fireballs():
+    """View all fireballs."""
+
+    fireballs = crud.get_fireballs()
+
+    return render_template("all_fireballs.html", fireballs=fireballs)
+
+
+@app.route('/fireballs/<locator_id>')
+def show_fireball_details(locator_id):
+    """Show fireball details"""
+
+    fireball = crud.get_location_by_coordinates(locator_id)
+
+    return render_template("fireball_details.html", fireball=fireball)
+
+
+@app.route('/fireballs/<locator_id>/save', methods=["POST"])
+def save_location(locator_id):
+    """Show new save"""
+
+    signed_in_email=session.get("user_email")
+
+    if signed_in_email is None:
+        flash(f"You must be signed in!")
+
+    else: 
+        user = crud.get_user_by_email(signed_in_email)
+        locator = crud.get_location_by_coordinates(locator_id)
+
+        save = crud.create_saved_location(user, locator)
+        db.session.add(save)
+        db.session.commit()
+        flash(f"You saved the coordinates for the fireball with this date and time: {locator.date}")
+
+    return redirect(f'/fireballs/{locator_id}')
+
+@app.route("/my_saved_fireballs")
+def my_fireball_saves():
+    """Display fireball saved"""
+
+    # user_id = session.get("user_id")
+    # user_id = session["user_id"]
+    # print(user_id)
+    # my_saves=Saved.query.filter.all()
+    user = User.query.filter(User.email==session["user_email"]).first()
+    # print(user)
+    # print("*******")
+    # print(session['user_id'])
+    my_saves=Saved.query.filter(Saved.user_id == user.user_id).all()
+    # my_saves = crud.get_saves_by_user('user_id')
+    
+    return render_template("my_saved_fireballs.html", my_saves=my_saves, user=user)
+
+@app.route("/logout", methods=["GET"])
+def logout():
+    """ log out current user"""
+    session.clear()
+    flash("You are now logged out")
+
+    return redirect("/")
+
+# @app.route('/savefireball', methods=["POST"])
+# def saved_location_by_map():
+#     """Save fireball from map"""
+
+#     signed_in_email=session.get("user_email")
+
+#     if signed_in_email is None:
+#         flash(f"You must be signed in!")
+        
+#     else: 
+#         user = crud.get_user_by_email(signed_in_email)
+#         locator = crud.get_location_by_coordinates(locator)
+#         # locator = crud.get_location_by_coordinates(locator)
+
+#         save = crud.create_saved_location(user, locator)
+#         db.session.add(save)
+#         db.session.commit()
+#         flash(f"You saved the coordinates for the fireball with this date and time: {locator.date}")
 
 
 
-# @app.route("/map/static/<path:resource>")
-# def get_resource(resource):
-#     return send_from_directory("static", resource)
 
 if __name__ == "__main__":
     connect_to_db(app)
