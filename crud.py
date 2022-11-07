@@ -31,13 +31,18 @@ def create_saved_location(user, locator):
     return save
 
 def get_saves_by_user(user_id):
-    """Returns all saves by user user  id"""
+    """Returns all saves by user user_id"""
     return Saved.query.filter(Saved.user_id == user_id).all()
 
 def remove_saved_location(user, locator_id):
     """" Removed saved fireball"""
     return Saved.query.filter_by(user=user, locator_id=locator_id).first()
 
+def create_location_by_map(user, locator_id):
+    """Creates location by user for maps"""
+    get_location= Saved(user=user, locator_id=locator_id)
+
+    return get_location
 
 def get_user_individual(email):
     return User.query.get(email)

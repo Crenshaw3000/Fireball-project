@@ -178,13 +178,12 @@ def my_fireball_saves():
     # print(session['user_id'])
     my_saves=Saved.query.filter(Saved.user_id == user.user_id).all()
     # my_saves = crud.get_saves_by_user('user_id')
-    
+    print(my_saves)
     return render_template("my_saved_fireballs.html", my_saves=my_saves, user=user)
 
 @app.route('/delete_saved_fireball', methods=["POST"])
 def delete_fireball():
     """Delete a saved fireball"""
-
 
     signed_in_email=session.get("user_email")
     # user = crud.get_user_by_email(signed_in_email)
@@ -194,7 +193,7 @@ def delete_fireball():
             flash(f"You must be signed in!")
 
     else: 
-        user = User.query.filter(User.email==session["user_email"]).first()
+        user= User.query.filter(User.email==session["user_email"]).first()
         locator_id = request.form.get('fireball_id')
         # print(user)
         # print(locator_id)
@@ -202,36 +201,34 @@ def delete_fireball():
         # print(remove)
         db.session.delete(remove)
         db.session.commit()
-        flash(f"You deleted this fireball from you saves")
+        flash(f"You deleted this fireball from your saves")
 
 
     return redirect("/my_saved_fireballs")
 
-# @app.route('/savefireball', methods=["POST"])
-# def save_fireball_from_map():
-#     """Save fireball from map"""
+@app.route('/save_fireball', methods=["POST"])
+def save_fireball_from_map():
+    """Save fireball from map"""
 
+    signed_in_email=session.get("user_email")
+    print(signed_in_email)
 
-#     signed_in_email=session.get("user_email")
-#     # user = crud.get_user_by_email(signed_in_email)
-#     print(signed_in_email)
+    if signed_in_email is None:
+            flash(f"You must be signed in!")
 
-#     if signed_in_email is None:
-#             flash(f"You must be signed in!")
+    else: 
+        user = User.query.filter(User.email==session["user_email"]).first()
+        locator_id= request.form.get('fireballs_id')
+        print(user)
+        print(locator_id)
+        
+        save_fire = crud.create_location_by_map(user, locator_id)
+        print(save_fire)
+        db.session.add(save_fire)
+        db.session.commit()
+        flash(f"You added this fireball to you saves")
 
-#     else: 
-#         user = User.query.filter(User.email==session["user_email"]).first()
-#         locator_id = request.form.get('fireball_id')
-#         # print(user)
-#         # print(locator_id)
-#         save_fire = crud.remove_saved_location(user,locator_id)
-#         # print(remove)
-#         db.session.delete(remove)
-#         db.session.commit()
-#         flash(f"You deleted this fireball from you saves")
-
-
-#     return redirect("/my_saved_fireballs")
+    return redirect("/my_saved_fireballs")
 
 
 @app.route("/logout", methods=["GET"])

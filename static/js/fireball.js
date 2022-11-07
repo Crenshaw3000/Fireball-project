@@ -46,13 +46,8 @@ function initMap() {
             <li><b>Fireball longitude: </b>${fireball.longitude}</li>
             <li><b>Impact energy (kt): </b>${fireball.ImpactEnergy}</li>
             
-            <form action="/savefireball" method="POST" id="fireball_id">
-            <input type='text' name="fireballs_date" value=fireball.date hidden>
-            <input type='text' name="fireballs_id" value=fireball.id hidden>
-            <input type='text' name="fireballs_lat" value=fireball.latitude hidden>
-            <input type='text' name="fireballs_long" value=fireball.longitude hidden>
-            <input type='text' name="fireballs_energy" value=fireball.ImpactEnergy hidden>
-
+            <form action="/save_fireball" method="POST" id="fireball_id">
+            <input type='text' name="fireballs_id" value=${fireball.id} hidden>
             <button type="submit">Save</button>
             </form>
 

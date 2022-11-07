@@ -67,8 +67,8 @@ class Saved(db.Model):
     saved_location = db.Column(db.Integer,
                         autoincrement= True,
                         primary_key= True)
-    user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
-    locator_id = db.Column(db.Integer, db.ForeignKey("locators.locator_id"))               
+    user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"), nullable=False)
+    locator_id = db.Column(db.Integer, db.ForeignKey("locators.locator_id"), nullable=False)               
 
     locator = db.relationship("Locator", back_populates="saved")
     user = db.relationship("User", back_populates="saved")

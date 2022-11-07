@@ -56,7 +56,7 @@ for n in range(10):
     for _ in range(10):
         random_save = choice(locations_in_db)
 
-        save = crud.get_saved_location(user, random_save)
+        save = crud.create_saved_location(user, random_save)
         model.db.session.add(random_save)
         
 model.db.session.commit()
