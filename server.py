@@ -190,7 +190,7 @@ def delete_fireball():
     print(signed_in_email)
 
     if signed_in_email is None:
-            flash(f"You must be signed in!")
+        flash(f"You must be signed in!")
 
     else: 
         user= User.query.filter(User.email==session["user_email"]).first()
@@ -204,7 +204,7 @@ def delete_fireball():
         flash(f"You deleted this fireball from your saves")
 
 
-    return redirect("/my_saved_fireballs")
+        return redirect("/my_saved_fireballs")
 
 @app.route('/save_fireball', methods=["POST"])
 def save_fireball_from_map():
@@ -212,21 +212,28 @@ def save_fireball_from_map():
 
     signed_in_email=session.get("user_email")
     print(signed_in_email)
+    locator_id= request.form.get('fireballs_id')
+    user = User.query.filter(User.email==session["user_email"]).first()
+    list_of_saves=Saved.query.filter(Saved.user_id == user.user_id).all()
+
 
     if signed_in_email is None:
-            flash(f"You must be signed in!")
-
-    else: 
-        user = User.query.filter(User.email==session["user_email"]).first()
-        locator_id= request.form.get('fireballs_id')
+        flash(f"You must be signed in!")
+    
+    elif locator_id not in list_of_saves:    
+    # locator_id= request.form.get('fireballs_id')
         print(user)
         print(locator_id)
-        
+    
         save_fire = crud.create_location_by_map(user, locator_id)
         print(save_fire)
         db.session.add(save_fire)
         db.session.commit()
         flash(f"You added this fireball to you saves")
+        
+  
+    else:
+        flash(f"You saved this fireball already.")
 
     return redirect("/my_saved_fireballs")
 
@@ -234,7 +241,12 @@ def save_fireball_from_map():
 @app.route("/logout", methods=["GET"])
 def logout():
     """ log out current user"""
-    session.clear()
+    # print("this is the session before we do session pop")
+    print(session)
+    session.pop("user_email", None)
+    # print("this is the session after we do session pop")
+    print(session)
+
     flash("You are now logged out")
 
     return redirect("/")
