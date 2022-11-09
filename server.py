@@ -146,15 +146,24 @@ def show_fireball_details(locator_id):
 
 @app.route('/fireballs/<locator_id>/save', methods=["POST"])
 def save_location(locator_id):
-    """Show new save"""
+    """Save a fireball"""
 
     signed_in_email=session.get("user_email")
 
     if signed_in_email is None:
         flash(f"You must be signed in!")
+        return redirect("/")
 
-    else: 
-        user = crud.get_user_by_email(signed_in_email)
+    # locator_id= request.form.get('fireballs_id')
+    user = User.query.filter(User.email==session["user_email"]).first()
+    map_save=Saved.query.filter(Saved.user_id == user.user_id, Saved.locator_id== locator_id).first()
+    list_of_saves = Saved.query.filter(Saved.user_id == user.user_id).all()
+    
+    if map_save in list_of_saves:
+        flash(f"You saved this fireball already.")
+
+    elif map_save in list_of_saves:
+        # user = crud.get_user_by_email(signed_in_email)
         locator = crud.get_location_by_coordinates(locator_id)
 
         save = crud.create_saved_location(user, locator)
@@ -167,18 +176,24 @@ def save_location(locator_id):
 @app.route("/my_saved_fireballs")
 def my_fireball_saves():
     """Display fireball saved"""
+    
+    signed_in_email=session.get("user_email")
 
+    if signed_in_email is None:
+        flash(f"You must be signed in!")
+        return redirect("/")
     # user_id = session.get("user_id")
     # user_id = session["user_id"]
     # print(user_id)
     # my_saves=Saved.query.filter.all()
-    user = User.query.filter(User.email==session["user_email"]).first()
+    else:
+        user = User.query.filter(User.email==session["user_email"]).first()
     # print(user)
     # print("*******")
     # print(session['user_id'])
-    my_saves=Saved.query.filter(Saved.user_id == user.user_id).all()
+        my_saves=Saved.query.filter(Saved.user_id == user.user_id).all()
     # my_saves = crud.get_saves_by_user('user_id')
-    print(my_saves)
+    # print(my_saves)
     return render_template("my_saved_fireballs.html", my_saves=my_saves, user=user)
 
 @app.route('/delete_saved_fireball', methods=["POST"])
@@ -187,10 +202,11 @@ def delete_fireball():
 
     signed_in_email=session.get("user_email")
     # user = crud.get_user_by_email(signed_in_email)
-    print(signed_in_email)
+    # print(signed_in_email)
 
     if signed_in_email is None:
         flash(f"You must be signed in!")
+        return redirect("/")
 
     else: 
         user= User.query.filter(User.email==session["user_email"]).first()
@@ -211,29 +227,40 @@ def save_fireball_from_map():
     """Save fireball from map"""
 
     signed_in_email=session.get("user_email")
-    print(signed_in_email)
-    locator_id= request.form.get('fireballs_id')
-    user = User.query.filter(User.email==session["user_email"]).first()
-    list_of_saves=Saved.query.filter(Saved.user_id == user.user_id).all()
-
-
+    # # print(signed_in_email)
+ 
     if signed_in_email is None:
         flash(f"You must be signed in!")
-    
-    elif locator_id not in list_of_saves:    
-    # locator_id= request.form.get('fireballs_id')
-        print(user)
-        print(locator_id)
-    
+        return redirect("/")
+
+    locator_id= request.form.get('fireballs_id')
+    user = User.query.filter(User.email==session["user_email"]).first()
+    map_save=Saved.query.filter(Saved.user_id == user.user_id, Saved.locator_id== locator_id).first()
+    list_of_saves = Saved.query.filter(Saved.user_id == user.user_id).all()
+
+    # print(locator_id)
+    # print(list_of_saves)
+    # print("***")
+    # print(map_save)
+    # print("***&&****")
+    # print(list_of_saves)
+    # print("**((*****((((")
+
+    # for save in list_of_saves:
+    if map_save in list_of_saves:
+        flash(f"You saved this fireball already.")
+        # print("you *** already **")
+
+    elif map_save in list_of_saves:
+
+        # user = User.query.filter(User.email==session["user_email"]).first()
+        # locator_id = Saved.query.filter(Saved.user_id == user.user_id).all()
         save_fire = crud.create_location_by_map(user, locator_id)
         print(save_fire)
         db.session.add(save_fire)
         db.session.commit()
         flash(f"You added this fireball to you saves")
-        
-  
-    else:
-        flash(f"You saved this fireball already.")
+
 
     return redirect("/my_saved_fireballs")
 
