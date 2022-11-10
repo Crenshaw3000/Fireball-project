@@ -84,23 +84,21 @@ def login_user():
     
     return redirect("/")
 
-# @app.route('/user_details')
-# def show_user_details():
+@app.route('/profile')
+def show_user_details():
 
-#     email = request.form.get("email")
-#     user = crud.get_user_by_email(email)
-#     # saves = Saved.query.all()
+    signed_in_email=session.get("user_email")
 
-#     if email not in session:
-#         flash("You are not logged-in")
-    
-#     # user = User.query.get(session['user_email'])
-#     # email=session.get("user_email")
 
-#     # saved = user.saved
-#     # if user==email:
+    if signed_in_email is None:
+        flash(f"You must be signed in!")
+        return redirect("/")
 
-#     return render_template("user_details.html", user=user)
+    else:  
+        user = User.query.filter(User.email==session["user_email"]).first()
+
+
+    return render_template("profile.html", user=user)
 
 @app.route("/map/fireballs")
 def view_fireball_map():

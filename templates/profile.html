@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %} Profile{% endblock %}
+
+{% block body %}
+<h1>Profile</h1>
+<nav>
+    <section id="links-right">
+      <a href="/">home</a>
+    </section>
+  </nav>
+<p> You are logged in {{ user.fname }}.</p>
+
+<br></br>
+<strong> First Name </strong> {{user.fname}}
+<br></br>
+<strong> Last Name </strong> {{user.lname}}
+<br></br>
+<strong> Email  </strong> {{user.email}}
+<br></br>
+<strong> User ID  </strong> {{user.user_id}}
+<br></br>
+
+<h2> Log out</h2>
+<span class="loginlogoutlink">
+  <a title="Log Out" class="loginlogoutlink-logout" href="/logout">Log Out</a>
+</span>
+
+
+{% endblock %}

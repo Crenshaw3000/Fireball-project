@@ -44,6 +44,10 @@ def create_location_by_map(user, locator_id):
 
     return get_location
 
+def get_profile(user):
+    "gets user info"
+    return User.query.filter_by(user=user).first()
+
 def get_user_individual(email):
     return User.query.get(email)
 
