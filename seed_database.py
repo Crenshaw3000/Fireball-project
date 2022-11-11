@@ -49,8 +49,10 @@ for n in range(10):
     lname = 'lname_test'
     email = f'user{n}@test.com'  # Voila! A unique email!
     password = 'test'
+    fave_anime = 'test anime'
+    profile_url = 'test profile_url'
 
-    user = crud.create_user(fname, fname, email, password)
+    user = crud.create_user(fname, fname, email, password, fave_anime, profile_url)
     model.db.session.add(user)
 
     for _ in range(10):

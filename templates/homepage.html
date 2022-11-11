@@ -5,7 +5,7 @@
 </head>> 
 
 {% block body %}
-  <h1>Welcome!</h1>
+  <h1>Fireball Finder</h1>
 
   <h2>Navigation</h2>
   <ul>
@@ -24,13 +24,15 @@
 </ul>
   <h2>Create an Account</h2>
   <form action="/users" method="POST">
-    <p>
+    <div class="input-box">
       Email <input type="text" name="email" placeholder= "email" id ="email">
-    </p>
+    </div>
 
-    <p>
+
+    <div class="input-box">
       Password <input type="password" placeholder= "password" name="password" id="password">
-    </p>
+    </div>
+
 
     <p>
       <input type="submit">
@@ -39,15 +41,13 @@
 
   <h2>Log In</h2>
   <form action="/login" method="POST">
-    <p>
+    <div class="input-box">
       Email <input type="text" name="email" placeholder= "email" id ="email">
-    </p>
+    </div>
 
     <div class="input-box">
-      <p>
         Password <input type="password" placeholder= "password" name="password" id="password">
         <!-- <image src="/static/images/eye-close.png" id ="eyeicon"> -->
-      </p>
     </div>
 
     <script> 

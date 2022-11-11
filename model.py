@@ -15,7 +15,10 @@ class User(db.Model):
     fname = db.Column(db.String)
     lname = db.Column(db.String)
     email = db.Column(db.String, unique= True)
-    password = db.Column(db.String)
+    password = db.Column(db.String, nullable=False)
+    fave_anime=db.Column(db.String, nullable=True)
+    profile_url = db.Column(db.String, nullable=True)
+
 
     saved = db.relationship("Saved", back_populates="user")
 

@@ -3,12 +3,16 @@
 from model import db, User, Locator, Saved, connect_to_db
 
 
-def create_user(fname, lname, email, password):
+def create_user(fname, lname, email, password, fave_anime, profile_url):
     """Create & return a new user."""
 
-    user = User(fname=fname, lname=lname, email=email, password=password)
+    user = User(fname=fname, lname=lname, email=email, password=password, fave_anime=fave_anime, profile_url=profile_url)
 
     return user
+
+# def save_profile_pic(email, profile_url):
+#     profile_pic = User(email=email, profile_url=profile_url)
+#     return profile_pic
 
 def create_location(date, latitude, longitude, energy):
     """Create and return new  locator"""
@@ -49,13 +53,16 @@ def get_profile(user):
     return User.query.filter_by(user=user).first()
 
 def get_user_individual(email):
+    """Get user by email"""
     return User.query.get(email)
 
 def get_user_by_email(email):
+    """ Get logged in user by email"""
     return User.query.filter(User.email == email).first()
 
 
 def check_email_and_pass(email, password):
+    """ Get email and password by user if email and password match from form"""
     return User.query.filter(User.password == password).first() and User.query.filter(User.email == email).first()
 
 

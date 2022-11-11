@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %} Profile{% endblock %}
+{% block title %} Profile {% endblock %}
 
 {% block body %}
 <h1>Profile</h1>
@@ -8,19 +8,68 @@
     <section id="links-right">
       <a href="/">home</a>
     </section>
-  </nav>
-<p> You are logged in {{ user.fname }}.</p>
+</nav>
+<div class = container>
+  <div class = row>
+    <div class = col-8 >
+
+        <h2> You are logged in {{ user.fname }}!</h2>
+
+        <div class = col-4>
+          <img src="{{ user.profile_url }}">
+        <!-- <image src="/static/images/profile.png", width ="100", align="right"></image> -->
+        </div>
+
+        <br></br>
+        <strong> First Name </strong> {{user.fname}}
+        <br></br>
+        <strong> Last Name </strong> {{user.lname}}
+        <br></br>
+        <strong> Email  </strong> {{user.email}}
+        <br></br>
+        <strong> User ID  </strong> {{user.user_id}}
+        <br></br>
+        <strong> Favorite Anime  </strong> {{user.fave_anime}}
+        <br></br>
+
+
+
+
+
+        <br></br>
+
+      </div>
+    </div>
+  </div>
+
 
 <br></br>
-<strong> First Name </strong> {{user.fname}}
+<h2>Select a file to upload</h2>
+
+
+  <form method="post" action="/upload_profile_pic" enctype="multipart/form-data">
+  
+        <input type="file" name="my-file" autocomplete="off" required>
+ 
+      <input type="submit">
+  
+  </form> 
+
+
 <br></br>
-<strong> Last Name </strong> {{user.lname}}
+<h2> Update Profile</h2>
+<span class="update_profile">
+  <a title="Update Profile" class="update_profile" href="/update_profile">Update Profile</a>
+</span>
+
 <br></br>
-<strong> Email  </strong> {{user.email}}
-<br></br>
-<strong> User ID  </strong> {{user.user_id}}
+<h2> Change Password</h2>
+<span class="change_password">
+  <a title="Change Password" class="change_password" href="/change_password">Change Password</a>
+</span>
 <br></br>
 
+<br></br>
 <h2> Log out</h2>
 <span class="loginlogoutlink">
   <a title="Log Out" class="loginlogoutlink-logout" href="/logout">Log Out</a>

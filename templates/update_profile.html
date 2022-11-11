@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block title %}Update Profile{% endblock %}
+<head>
+  <link rel="stylesheet" href="/static/css/styles.css">
+</head>> 
+
+{% block body %}
+<h1>Update Profile</h1>
+<nav>
+    <section id="links-right">
+      <a href="/">home</a>
+    </section>
+</nav>
+<br></br>
+
+
+<form action="/update_profile" method="POST">
+    <div class="input-box" >
+        Enter a new first name <input placeholder= "first name" name="fname" id="fname">
+    </div>
+    <br></br>
+
+    <div class="input-box">
+        Enter a new last name <input placeholder= "last name" name="lname" id="lname">
+    </div>
+    <br></br>
+
+    <div class="input-box">
+      Enter a new favorite anime <input placeholder= "favorite anime" name="fave_anime" id="fave_anime">
+    </div>
+
+    <p>
+        <input type="submit">
+      </p>
+    </form>
+<!-- 
+    <div class="input-box">
+      Enter a new email <input type="text" name="email" placeholder= "email" id ="email">
+    </div> -->
+
+    <!-- 
+    <div class="input-box">
+      Enter new favorite anime <input type="text" name="fave_anime" placeholder= "fave_anime" id ="fave_anime">
+    </div> -->
+
+<br></br>
+
+<br></br>
+<h2> Change Password</h2>
+<span class="change_password">
+  <a title="Change Password" class="change_password" href="/change_password">Change Password</a>
+</span>
+<br></br>
+
+
+
+    
+
+
+<br></br>
+<h2> Log out</h2>
+<span class="loginlogoutlink">
+  <a title="Log Out" class="loginlogoutlink-logout" href="/logout">Log Out</a>
+</span>
+
+
+  {% endblock %}
