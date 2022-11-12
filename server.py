@@ -15,26 +15,25 @@ app = Flask(__name__)
 app.secret_key = "dev"
 app.jinja_env.undefined = StrictUndefined
 
-# UPLOAD_FOLDER = 'static/uploads'
-# # ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 
-# app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-# app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
 GOOGLE_KEY=os.environ['GOOGLE_KEY']
 CLOUDINARY_KEY=os.environ['CLOUDINARY_KEY']
 CLOUDINARY_SECRET=os.environ['CLOUDINARY_SECRET']
 CLOUD_NAME="dtxtrrnee"
 
-# def allowed_file(filename):
-# 	return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
 
 @app.route('/upload_profile_pic')
 def upload_form():
-	return render_template('profile.html')
+    """ Shows form to upload a picture"""
+	
+    return render_template('profile.html')
 
 @app.route('/upload_profile_pic', methods=['POST'])
 def upload_image():
+    """Upload photo and saves to database"""
+
     user = User.query.filter(User.email==session["user_email"]).first()
     my_file = request.files['my-file']
 
@@ -50,6 +49,8 @@ def upload_image():
         user.profile_url = img_url
         db.session.commit()
         flash(f"Profile picture uploaded.")
+    # else:
+    #     flash(f"Could not upload profile picture please try agin.")
 
     return redirect("/profile")
 

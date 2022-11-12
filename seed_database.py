@@ -50,7 +50,7 @@ for n in range(10):
     email = f'user{n}@test.com'  # Voila! A unique email!
     password = 'test'
     fave_anime = 'test anime'
-    profile_url = 'test profile_url'
+    profile_url = '/static/images/profile.png'
 
     user = crud.create_user(fname, fname, email, password, fave_anime, profile_url)
     model.db.session.add(user)
