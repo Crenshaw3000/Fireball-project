@@ -25,14 +25,30 @@
   <h2>Create an Account</h2>
   <form action="/users" method="POST">
     <div class="input-box">
-      Email <input type="text" name="email" placeholder= "email" id ="email">
+      <strong> Email </strong> <input type="text" name="email" placeholder= "email" id ="email">
     </div>
 
 
     <div class="input-box">
-      Password <input type="password" placeholder= "password" name="password" id="password">
+      <strong> Password </strong> <input type="password" placeholder= "password" name="password" id="password">
     </div>
 
+    <p> Please answer all the security questions. </p> 
+    <div class="input-box">
+      <strong> Security Question 1: Where were you born? </strong>
+      <input type="text" placeholder= "Security Question 1" name="security1" id="security1">
+    </div>
+
+
+    <div class="input-box">
+      <strong> Security Question 2: Name of your high school? </strong>
+      <input type="text" placeholder= "Security Question 2" name="security2" id="security2">
+    </div>
+
+    <div class="input-box">
+      <strong> Security Question 3: Name of your high school? </strong>
+      <input type="text" placeholder= "Security Question 3" name="security3" id="security3">
+    </div>
 
     <p>
       <input type="submit">
@@ -67,6 +83,14 @@
       <input type="submit">
     </p>
   </form>
+
+  <br></br>
+  <h2> Forgot Password </h2>
+  <span class="forgot_password">
+    <a title="Forgot Password" class="forgot_password" href="/forgot_password">Forgot Password</a>
+  </span>
+  <br></br>
+
 
   <h2> Log out</h2>
   <span class="loginlogoutlink">

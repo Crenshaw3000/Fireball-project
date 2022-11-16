@@ -18,6 +18,9 @@ class User(db.Model):
     password = db.Column(db.String, nullable=False)
     fave_anime=db.Column(db.String, nullable=True)
     profile_url = db.Column(db.String, nullable=True)
+    security1 = db.Column(db.String, nullable= False)
+    security2 = db.Column(db.String, nullable=False)
+    security3 =db.Column(db.String, nullable=False)
 
 
     saved = db.relationship("Saved", back_populates="user")

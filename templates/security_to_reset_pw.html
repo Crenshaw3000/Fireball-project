@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %} Reset Password {% endblock %}
+<head>
+  <link rel="stylesheet" href="/static/css/styles.css">
+</head>> 
+
+{% block body %}
+<h1>Change Password</h1>
+<nav>
+    <section id="links-right">
+      <a href="/">home</a>
+    </section>
+</nav>
+
+
+
+</ul>
+<h2>Security Question to login</h2>
+<form action="/security_to_reset_pw" method="POST">
+  <div class="input-box">
+
+<p> Answer all the security questions to login. </p> 
+<div class="input-box">
+  <strong> Security Question 1: Where were you born? </strong>
+  <input type="text" placeholder= "Security Question 1" name="security1_reset" id="security1_reset">
+</div>
+
+
+<div class="input-box">
+  <strong> Security Question 2: Name of your high school? </strong>
+  <input type="text" placeholder= "Security Question 2" name="security2_reset" id="security2_reset">
+</div>
+
+<div class="input-box">
+  <strong> Security Question 3: Name of your high school? </strong>
+  <input type="text" placeholder= "Security Question 3" name="security3_reset" id="security3_reset">
+</div>
+
+<p>
+  <input type="submit">
+</p>
+</form>
+
+{% endblock %}
