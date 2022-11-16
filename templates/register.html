@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %} Register {% endblock %}
+<head>
+  <link rel="stylesheet" href="/static/css/styles.css">
+</head>> 
+
+{% block body %}
+<h1>Register</h1>
+<nav>
+    <section id="links-right">
+      <a href="/">home</a>
+    </section>
+</nav>
+
+
+
+<h2>Register</h2>
+<form action="/register" method="POST">
+  <div class="input-box">
+    <strong> Email </strong> <input type="text" name="email" placeholder= "email" id ="email">
+  </div>
+
+
+  <div class="input-box">
+    <strong> Password </strong> <input type="password" placeholder= "password" name="password" id="password">
+  </div>
+
+  <p> Please answer all the security questions. </p> 
+  <div class="input-box">
+    <strong> Security Question 1: Where were you born? </strong>
+    <input type="text" placeholder= "Security Question 1" name="security1" id="security1">
+  </div>
+
+
+  <div class="input-box">
+    <strong> Security Question 2: Name of your high school? </strong>
+    <input type="text" placeholder= "Security Question 2" name="security2" id="security2">
+  </div>
+
+  <div class="input-box">
+    <strong> Security Question 3: Name of your high school? </strong>
+    <input type="text" placeholder= "Security Question 3" name="security3" id="security3">
+  </div>
+
+  <p>
+    <input type="submit">
+  </p>
+</form>
+
+
+
+{% endblock %}

@@ -209,8 +209,13 @@ def  prediction():
 
     return render_template("prediction.html")
 
+@app.route('/register',  methods=["GET"])
+def get_register_form():
+    """ Shows register form """
 
-@app.route('/users', methods=['POST'])
+    return render_template("register.html")
+
+@app.route('/register', methods=['POST'])
 def register_user():
     """Create new user account"""
     fname = request.form.get("fname")
