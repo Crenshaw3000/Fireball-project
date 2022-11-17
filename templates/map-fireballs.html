@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
 
 {% block head %}
+<head>
   <link rel="stylesheet" href="/static/css/maps.css">
   <link rel="stylesheet" href="/static/css/fireball.css">
+</head>
 
 {% endblock %}
 
@@ -12,10 +14,12 @@
       <a href="/">home</a>
     </section>
   </nav>
-
+<body>
   <section class="map">
     <div id="map"></div>
   </section>
+</body>
+
 
   <script src="/static/js/mapStyles.js"></script>
   <script src="/static/js/fireball.js"></script>
@@ -23,6 +27,5 @@
     async
     src='https://maps.googleapis.com/maps/api/js?key={{GOOGLE_KEY}}&callback=initMap'>
   </script>
-  
 {% endblock %}
   

@@ -2,17 +2,9 @@
 
 from flask import Flask, render_template, request, flash, session,redirect, jsonify, send_from_directory, url_for
 import cloudinary.uploader
-# from flask_mail import Mail, Message
-# from sendgrid import SendGridAPIClient
-# from sendgrid.helpers.mail import Content, Mail, From, To, Mail
 from model import Locator, User, Saved, connect_to_db, db
 import crud
 from jinja2 import StrictUndefined
-from itsdangerous import URLSafeTimedSerializer, SignatureExpired
-
-# import asyncio
-# import jwt
-import datetime
 import os
 # import requests
 # from werkzeug.utils import secure_filename
@@ -22,7 +14,6 @@ import os
 app = Flask(__name__)
 app.secret_key = "dev"
 app.jinja_env.undefined = StrictUndefined
-# app.config.from_pyfile('config.cfg')
 
 
 
@@ -30,31 +21,7 @@ GOOGLE_KEY=os.environ['GOOGLE_KEY']
 CLOUDINARY_KEY=os.environ['CLOUDINARY_KEY']
 CLOUDINARY_SECRET=os.environ['CLOUDINARY_SECRET']
 CLOUD_NAME="dtxtrrnee"
-# sendgrid_client = SendGridAPIClient(
-#     api_key=os.environ.get('SENDGRID_API_KEY'))
-# app.config['SECRET_KEY']="Luo4Zr1lVYGTKrcy5mQ"
 
-# app.secret_key = 'SECRETSECRETSECRET'
-# app.config['SECRET_KEY'] = str('flasksecretkey')
-# app.config['MAIL_SERVER'] = 'smtp.gmail.com'
-# app.config['MAIL_PORT'] = 587
-# app.config['MAIL_USE_TLS'] = False
-# app.config['MAIL_USE_SSL'] = True
-# app.config['MAIL_USERNAME'] = os.environ['EMAIL_ADDRESS']
-# app.config['MAIL_PASSWORD'] = os.environ['EMAIL_PASSWORD']
-# mail = Mail(app)
-# s = URLSafeTimedSerializer("secret")
-
-
-# from_email = Email("firballfinder4@gmail.com")
-# to_email = To("firballfinder4@gmail.com")
-# subject = "Sending with SendGrid is Fun"
-# content = Content("text/plain", "and easy to do anywhere, even with Python")
-# mail = Mail(from_email, to_email, subject, content)
-# response = sg.client.mail.send.post(request_body=mail.get())
-# print(response.status_code)
-# print(response.body)
-# print(response.headers)
 
 
 @app.route('/forgot_password',  methods=["GET"])
@@ -63,36 +30,13 @@ def get_reset_password_form():
 
     return render_template("forgot_password.html")
 
-# @app.route('/forgot_password/<token>')
-# def confirm_email(token):
-#     # try:
-#     #     email = s.loads(token, salt='email-confirm', max_age=60)
-#     # except Signatureexpired:
-#     #     flash(f"The token is expoired")
-    
-#     return flash(f"the token works")
 
 @app.route('/forgot_password',  methods=["POST"])
 def reset_password():
     """Takes user to security questions when user email is entered."""
-    # email = session.get('user_email')
     email= request.form.get("user_email")
 
-
-    # token = s.dumps(email, salt='email-confirm')
-    # msg = Message('Confirm Email', sender="firballfinder4@gmail.com", recipients= 'email_for_reset_pw')
-
-    # link = url_for('confirm_email, token=token, external =True')
-    # msg.body = "Your lin kis {}".fomrat(link)
-    # mail.send(msg)
-
-    #user dont exist, need to get usr based off email.
-    # user = User.query.filter(User.email==email_info_reset).first()
     user = crud.get_user_by_email(email)
-    # forgot_pw_email= session.get('forgot_pw_user_email')
-    # user = User.query.filter(User.email==session["forgot_pw_user_email"]).first()
-
-
     
     if user is None:
         flash(f"User could not be found. Try entering the email again.")
@@ -249,11 +193,17 @@ def login_user():
     password = request.form.get("password")
 
     match = crud.check_email_and_pass(email, password)
+    
 
     if not match:
         flash("This email or password is not correct. Try again.")
     else:
         session["user_email"]=match.email
+        session["user_id"]=match.user_id
+        session.modified = True
+        print(session["user_email"])
+        print(session["user_id"])
+        print("*************")
         flash("Logged in!")
     
     return redirect("/")
@@ -352,7 +302,7 @@ def change_password():
 
 @app.route("/map/fireballs")
 def view_fireball_map():
-    """Show map off fireballs."""
+    """Show map of fireballs."""
 
     return render_template("map-fireballs.html", GOOGLE_KEY=GOOGLE_KEY)
 
@@ -403,14 +353,18 @@ def save_location(locator_id):
         return redirect("/")
 
     # locator_id= request.form.get('fireballs_id')
-    user = User.query.filter(User.email==session["user_email"]).first()
+    # user = User.query.filter(User.email==session["user_email"]).first()
+    user= User.query.get(session["user_id"])
+    # print(user)
+    # print("YYYYY****YYYYY")
     map_save=Saved.query.filter(Saved.user_id == user.user_id, Saved.locator_id == locator_id).first()
-    list_of_saves = Saved.query.filter(Saved.user_id == user.user_id).all()
-    
-    if map_save in list_of_saves:
+    # list_of_saves = Saved.query.filter(Saved.user_id == user.user_id).all()
+    print(map_save)
+
+    if map_save:
         flash(f"You saved this fireball already.")
 
-    elif map_save in list_of_saves:
+    else:
         # user = crud.get_user_by_email(signed_in_email)
         locator = crud.get_location_by_coordinates(locator_id)
 
@@ -482,9 +436,10 @@ def save_fireball_from_map():
         return redirect("/")
 
     locator_id= request.form.get('fireballs_id')
-    user = User.query.filter(User.email==session["user_email"]).first()
+    # user = User.query.filter(User.email==session["user_email"]).first()
+    user= User.query.get(session["user_id"])
     map_save=Saved.query.filter(Saved.user_id == user.user_id, Saved.locator_id== locator_id).first()
-    list_of_saves = Saved.query.filter(Saved.user_id == user.user_id).all()
+    # list_of_saves = Saved.query.filter(Saved.user_id == user.user_id).all()
 
     # print(locator_id)
     # print(list_of_saves)
@@ -495,11 +450,11 @@ def save_fireball_from_map():
     # print("**((*****((((")
 
     # for save in list_of_saves:
-    if map_save in list_of_saves:
+    if map_save:
         flash(f"You saved this fireball already.")
         # print("you *** already **")
 
-    elif map_save in list_of_saves:
+    else:
 
         # user = User.query.filter(User.email==session["user_email"]).first()
         # locator_id = Saved.query.filter(Saved.user_id == user.user_id).all()
@@ -532,6 +487,3 @@ def logout():
 if __name__ == "__main__":
     connect_to_db(app)
     app.run(host="0.0.0.0", debug=True)
-    # loop = asyncio.get_event_loop()
-    # task = asyncio.async(send_many(ems, sample_cb))
-    # loop.run_until_complete(task)

@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 
 {% block title %} My Saved Fireballs {% endblock %}
+<head>
+  <link rel="stylesheet" href="/static/css/styles.css">
+</head>> 
 
 {% block body %}
 <h1>My Saved Fireballs</h1>
@@ -9,23 +12,26 @@
       <a href="/">home</a>
     </section>
 </nav>
+<br></br>
 
-<h2> Welcome {{user.fname}}</h2>
-<ul>
-{% for fireball in my_saves %}
-    <li>
-        Fireball Id: {{ fireball.locator.locator_id }}
-        Fireball Latitude: {{ fireball.locator.latitude }}
-        Fireball Longitude: {{ fireball.locator.longitude }}
-        Fireball Impact Energy: {{ fireball.locator.energy }}
-    </li>
-    <form action="/delete_saved_fireball" method="POST">
-      <label for="Remove_fave_fireball">To Remove Fireball</label>
-      <input type='text' name="fireball_id" value={{fireball.locator.locator_id}} hidden>
-      <button type="submit">Remove</button>
-    </form>
-{% endfor %}
-</ul>
+<body> 
+  <h2> Welcome {{user.fname}}</h2>
+  <ul>
+  {% for fireball in my_saves %}
+      <li>
+          Fireball Id: {{ fireball.locator.locator_id }}
+          Fireball Latitude: {{ fireball.locator.latitude }}
+          Fireball Longitude: {{ fireball.locator.longitude }}
+          Fireball Impact Energy: {{ fireball.locator.energy }}
+      </li>
+      <form action="/delete_saved_fireball" method="POST">
+        <label for="Remove_fave_fireball">To Remove Fireball</label>
+        <input type='text' name="fireball_id" value={{fireball.locator.locator_id}} hidden>
+        <button type="submit">Remove</button>
+      </form>
+  {% endfor %}
+  </ul>
+</body>
 {% endblock %}
 
 

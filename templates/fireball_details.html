@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 
 {% block title %}{{  fireball.date  }} - Details{% endblock %}
+<head>
+  <link rel="stylesheet" href="/static/css/styles.css">
+</head>> 
 
 {% block body %}
 <nav>
@@ -11,23 +14,25 @@
 
 <h1>{{ fireball.date }}</h1>
 
-<p>
-<ul> 
-    <li>Latitude: {{ fireball.latitude }} </li>
-    <li>Longitude: {{ fireball.longitude }} </li>
-    <li>Log Impact Energy (kt): {{ fireball.energy }} </li>
-</ul>
-</p>
+<body>
+  <p>
+  <ul> 
+      <li>Latitude: {{ fireball.latitude }} </li>
+      <li>Longitude: {{ fireball.longitude }} </li>
+      <li>Log Impact Energy (kt): {{ fireball.energy }} </li>
+  </ul>
+  </p>
 
 
-<form action="/fireballs/{{fireball.locator_id}}/save" method="POST">
-    <label for="user-save">Save location:</label>
-    <input type='text' name="fireball_id" value=fireball.id hidden>
-    <input type='text' name="fireball_lat" value=fireball.latitude hidden>
-    <input type='text' name="fireball_long" value=fireball.longitude hidden>
-    <input type='text' name="fireball_energy" value=fireball.energy hidden>
- 
-  <button type="submit">Save</button>
-</form>
+  <form action="/fireballs/{{fireball.locator_id}}/save" method="POST">
+      <label for="user-save">Save location:</label>
+      <input type='text' name="fireball_id" value=fireball.id hidden>
+      <input type='text' name="fireball_lat" value=fireball.latitude hidden>
+      <input type='text' name="fireball_long" value=fireball.longitude hidden>
+      <input type='text' name="fireball_energy" value=fireball.energy hidden>
+  
+    <button type="submit">Save</button>
+  </form>
+</body>
 
 {% endblock %}

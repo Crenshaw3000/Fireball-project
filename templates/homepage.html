@@ -1,51 +1,57 @@
 {% extends 'base.html' %}
 {% block title %}Fireballs Home{% endblock %}
 <head>
-  <link rel="stylesheet" href="/static/css/styles.css">
-</head>> 
+
+
+  <style>
+    form i {
+      margin-left: -30px;
+      cursor: pointer;
+    }
+    </style>
+          
+</head>
 
 {% block body %}
-  <h1>Fireball Finder</h1>
+  <body>
+    <h1>Fireball Finder</h1>
+    <br></br>
 
-  <h2>Navigation</h2>
-  <ul>
-    <li><a href="/about">About</a></li>
-    <li><a href="/data_visualization">View Fireball Data Visualization</a></li>
-    <li><a href="/prediction">View Fireball Prediction Model</a></li>
-    <li><a href="/map/fireballs">Map Fireballs</a></li>
-    <li><a href="/fireballs">List of Fireballs</a></li>
-    <li><a href="/my_saved_fireballs">Saved Fireballs</a></li>
-    <li><a href="/profile">Profile</a></li>
-</ul>
+    <h2>Navigation</h2>
+    <ul>
+      <li><a href="/about">About</a></li>
+      <li><a href="/data_visualization">View Fireball Data Visualization</a></li>
+      <li><a href="/prediction">View Fireball Prediction Model</a></li>
+      <li><a href="/map/fireballs">Map Fireballs</a></li>
+      <li><a href="/fireballs">List of Fireballs</a></li>
+      <li><a href="/my_saved_fireballs">Saved Fireballs</a></li>
+      <li><a href="/profile">Profile</a></li>
+    </ul>
+    <br></br>
 
-  <h2>Log In</h2>
-  <form action="/login" method="POST">
-    <div class="input-box">
-      Email <input type="text" name="email" placeholder= "email" id ="email">
-    </div>
+    <h2>Log In</h2>
+    <div class="container"></div>
+      <form action="/login" method="POST">
+        <div class="input-box">
+          Email <input type="text" name="email" placeholder= "email" id ="email">
+        </div>
 
-    <div class="input-box">
-        Password <input type="password" placeholder= "password" name="password" id="password">
-        <!-- <image src="/static/images/eye-close.png" id ="eyeicon"> -->
-    </div>
+        <div class="input-box">
+            Password <input type="password" placeholder= "password" name="password" id="password">
+            <button type="button" class="bi bi-eye-slash" id="togglePassword"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-slash" viewBox="0 0 16 16">
+              <path d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z"/>
+              <path d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829l.822.822zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829z"/>
+              <path d="M3.35 5.47c-.18.16-.353.322-.518.487A13.134 13.134 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7.029 7.029 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12-.708.708z"/>
+            </svg>
+            </button>
+        </div>
+    
+          <button type="submit" id="submit" class="btn btn-primary">
+          Log In
+        </button> 
+     </form>
+    </div>    
 
-    <script> 
-      let eyeicon = document.getElementById("eyeicon")
-      let password = document.getElementById("password")
-
-      eyeicon.onclick =  function() {
-        if (password.type == "password") {
-          password.type == "text";
-        }else{
-          password.type== "password"
-        }
-      }
-    </script>
-
-    <p>
-      <input type="submit">
-    </p>
-  </form>
 
   <br></br>
   <h2> Register </h2>
@@ -67,4 +73,8 @@
  </span>
 
 
+ 
+    <script src="/static/js/toggleEye.js"></script>
+
+  </body>
 {% endblock %}

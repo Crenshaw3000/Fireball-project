@@ -58,7 +58,7 @@ def get_user_by_email(email):
 
 def check_email_and_pass(email, password):
     """ Get email and password by user if email and password match from form"""
-    return User.query.filter(User.password == password).first() and User.query.filter(User.email == email).first()
+    return User.query.filter(User.password == password, User.email == email).first()
 
 
 if __name__ == '__main__':
