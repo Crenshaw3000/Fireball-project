@@ -47,6 +47,10 @@ def get_profile(user):
     "gets user info"
     return User.query.filter_by(user=user).first()
 
+def remove_profile_photo(user_id, profile_url):
+    return User.query.filter_by(user_id=user_id, profile_url=profile_url).first()
+
+
 def get_user_individual(email):
     """Get user by email"""
     return User.query.get(email)
