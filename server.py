@@ -7,11 +7,7 @@ import crud
 from jinja2 import StrictUndefined
 import os
 import re
-from sqlalchemy import exc
 
-# import requests
-# from werkzeug.utils import secure_filename
-# import bcrypt
 
 
 app = Flask(__name__)
@@ -335,7 +331,7 @@ def fireball_info():
             "longitude": locator.longitude,
             "ImpactEnergy": locator.energy
         }
-        for locator in Locator.query.limit(150)
+        for locator in Locator.query.limit(1000)
     ]
     print(fireballs)
     return jsonify(fireballs)
