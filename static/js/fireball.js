@@ -3,11 +3,11 @@
 function initMap() {
   const map = new google.maps.Map(document.querySelector('#map'), {
     center: {
-      lat: 72,
-      lng: -140,
+      lat: 70,
+      lng: -120,
     },
     scrollwheel: false,
-    zoom: 2,
+    zoom: 2.5,
     zoomControl: true,
     panControl: false,
     streetViewControl: false,
@@ -54,7 +54,6 @@ function initMap() {
           </ul>
         </div>
       `;
-            // <input type="hidden" id="fireball_id" name="fireball_data" value=fireball.id>
 
         const fireballMarker = new google.maps.Marker({
           position: {
@@ -83,8 +82,5 @@ function initMap() {
   
     `);
     });
-    // document.querySelector(#save_fireball).addEventListener('click', () => {
-    //   const fireball_id = document.querySelector'(#fireball_id')
-    //   console.log(fireball_id)
-    // }
+
   }

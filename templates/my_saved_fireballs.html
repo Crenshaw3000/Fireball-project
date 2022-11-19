@@ -6,16 +6,17 @@
 </head>> 
 
 {% block body %}
-<h1>My Saved Fireballs</h1>
 <nav>
     <section id="links-right">
       <a href="/">home</a>
     </section>
 </nav>
+<h1>My Saved Fireballs</h1>
+
 <br></br>
 
 <body> 
-  <h2> Welcome {{user.fname}}</h2>
+  <h2> Welcome {{user.fname}}!</h2>
   <ul>
   {% for fireball in my_saves %}
       <li>

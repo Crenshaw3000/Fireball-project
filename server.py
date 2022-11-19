@@ -7,6 +7,7 @@ import crud
 from jinja2 import StrictUndefined
 import os
 import re
+from sqlalchemy import exc
 
 # import requests
 # from werkzeug.utils import secure_filename
@@ -41,11 +42,11 @@ def reset_password():
     user = crud.get_user_by_email(email)
     
     if user is None:
-        flash(f"User could not be found. Try entering the email again.")
+        flash("Incorrect email! Try entering the email again.")
     
     if user:
         session["user_email"]=user.email
-        flash(f"Follow the instructions below.")
+        flash("Follow the instructions below.")
    
     return redirect("/security_to_reset_pw")
 
@@ -58,21 +59,8 @@ def get_security_for_reset_form():
 @app.route('/security_to_reset_pw',  methods=["POST"])
 def ask_for_security_questions():
     """ When security questions are all correct takes user to profile """
-    # email = session.get('user_email')
-    # email= request.form.get("email")
+
     user = User.query.filter(User.email==session["user_email"]).first()
-
-    # user_info = crud.get_user_by_email(email)
-
-    # email_info_reset = request.form.get("email_for_reset_pw")
-    # user = User.query.filter(User.email==email).first()
-    # saved_security = User.query.filter(User.security1 == security1, User.security2 == security2, User.security3 == security3).first()
-
-    # #query security Q in db
-    # print (user)
-    # print("***?***")
-    # print(saved_security)
-
 
     security1_reset =request.form.get("security1_reset")
     security2_reset =request.form.get("security2_reset")
@@ -82,10 +70,7 @@ def ask_for_security_questions():
         return redirect("/change_password")
 
     else:
-        flash(f"At least one of the answers are not correct. Please try again.")
-
-
-
+        flash("At least one of the answers are not correct. Please try again.")
 
 
 @app.route('/upload_profile_pic')
@@ -101,49 +86,44 @@ def upload_image():
     user = User.query.filter(User.email==session["user_email"]).first()
     my_file = request.files['my-file']
 
-    result = cloudinary.uploader.upload(my_file,
-    api_key=CLOUDINARY_KEY,
-    api_secret=CLOUDINARY_SECRET,
-    cloud_name=CLOUD_NAME)
+    try:
+        result = cloudinary.uploader.upload(my_file,
+        api_key=CLOUDINARY_KEY,
+        api_secret=CLOUDINARY_SECRET,
+        cloud_name=CLOUD_NAME)
 
-    img_url = result['secure_url']
+        img_url = result['secure_url']    
+        if img_url:
+            user.profile_url = img_url
+            db.session.commit()
+            flash("Profile picture uploaded.")
 
-    
-    if img_url:
-        user.profile_url = img_url
-        db.session.commit()
-        flash("Profile picture uploaded.")
-
-    if img_url is None:
-        flash("Could not upload profile picture please try agin.")
+    # if img_url is None:
+    except:
+        flash("Could not upload profile picture please try again.")
 
     return redirect("/profile")
 
-# @app.route('/delete_profile_pic', methods=['POST'])
-# def delete_profile_image():
-#     """Deletes photo from profile"""
+@app.route('/delete_profile_pic', methods=['POST'])
+def delete_profile_image():
+    """Deletes photo from profile"""
     
-#     signed_in_email=session.get("user_email")
+    signed_in_email=session.get("user_email")
     
-#     if signed_in_email is None:
-#         flash("You must be signed in!")
-#         return redirect("/")
+    if signed_in_email is None:
+        flash("You must be signed in!")
+        return redirect("/")
     
-#     else:
-#         user = User.query.filter(User.email==session["user_email"]).first()
-#         # img_url = result['secure_url']
-#         profile_url = request.form.get("remove_profile_pic")
-#         user_id=session["user_id"]
+    else:
 
-#         remove_pic = crud.remove_profile_photo(user_id, profile_url)
-#         print("remove_pic")
-#         db.session.delete(remove_pic)
-#         db.session.commit()
-#         flash("The profile photo has been deleted.")
-#         db.session.add("/static/images/profile.png/")
-#         db.session.commit()
+        user = User.query.filter(User.email==session["user_email"]).first()
+        print(user)
 
-#     return redirect("/profile")
+        user.profile_url = "/static/images/profile.png"
+        db.session.commit()
+        flash("Profile picture deleted.")
+
+    return redirect("/profile")
 
 
 @app.route('/')
@@ -189,10 +169,10 @@ def register_user():
     """Create new user account"""
     fname = request.form.get("fname")
     lname =  request.form.get("lname")
-    email = request.form.get("re_email")
-    password = request.form.get("re_password")
+    email = request.form.get("email")
+    password = request.form.get("password")
     fave_anime = request.form.get("fave_anime")
-    profile_url = request.form.get("profile_url")
+    profile_url = "/static/images/profile.png"
     security1=request.form.get("security1")
     security2=request.form.get("security2")
     security3=request.form.get("security3")
@@ -246,9 +226,6 @@ def login_user():
         session["user_email"]=match.email
         session["user_id"]=match.user_id
         session.modified = True
-        # print(session["user_email"])
-        # print(session["user_id"])
-        # print("*************")
         flash("Logged in!")
     
     return redirect("/")
@@ -288,7 +265,6 @@ def update_profile():
     new_lname = request.form.get('lname')
     new_fave_anime = request.form.get('fave_anime')
 
-    # new_email = request.form.get('email')
 
     if new_fname:
         user.fname = new_fname
@@ -300,12 +276,6 @@ def update_profile():
         user.lname = new_lname
         db.session.commit()
         flash("Last name was updated.")
-
-
-    # if new_profile_pic:
-    #     user.new_profile_pic: = new_profile_pic
-    #     db.session.commit()
-    #     flash(f"Profile photo was updated")
 
 
     if new_fave_anime:
@@ -331,16 +301,16 @@ def change_password():
     updated_confirm_password = request.form.get('confirm_password')
 
     if signed_in_email is None:
-        flash(f"You must be signed in!")
+        flash("You must be signed in!")
         return redirect("/")
 
     if updated_new_password != updated_confirm_password:
-        flash(f"The passwords do not match. Please try again.")
+        flash("The passwords do not match. Please try again.")
 
     if updated_new_password == updated_confirm_password:
         user.password = updated_new_password
         db.session.commit()
-        flash(f"The password was updated.")
+        flash("The password was updated.")
 
     return redirect("/profile")
 
@@ -401,11 +371,9 @@ def save_location(locator_id):
     # locator_id= request.form.get('fireballs_id')
     # user = User.query.filter(User.email==session["user_email"]).first()
     user= User.query.get(session["user_id"])
-    # print(user)
-    # print("YYYYY****YYYYY")
+ 
     map_save=Saved.query.filter(Saved.user_id == user.user_id, Saved.locator_id == locator_id).first()
     # list_of_saves = Saved.query.filter(Saved.user_id == user.user_id).all()
-    print(map_save)
 
     if map_save:
         flash("You saved this fireball already.")
@@ -417,7 +385,7 @@ def save_location(locator_id):
         save = crud.create_saved_location(user, locator)
         db.session.add(save)
         db.session.commit()
-        flash("You saved the coordinates for the fireball with this date and time: {locator.date}")
+        flash("You saved the coordinates for this fireball.")
 
     return redirect(f'/fireballs/{locator_id}')
 
@@ -430,18 +398,12 @@ def my_fireball_saves():
     if signed_in_email is None:
         flash("You must be signed in!")
         return redirect("/")
-    # user_id = session.get("user_id")
-    # user_id = session["user_id"]
-    # print(user_id)
-    # my_saves=Saved.query.filter.all()
+
     else:
         user = User.query.filter(User.email==session["user_email"]).first()
-    # print(user)
-    # print("*******")
-    # print(session['user_id'])
+
         my_saves=Saved.query.filter(Saved.user_id == user.user_id).all()
-    # my_saves = crud.get_saves_by_user('user_id')
-    # print(my_saves)
+
     return render_template("my_saved_fireballs.html", my_saves=my_saves, user=user)
 
 @app.route('/delete_saved_fireball', methods=["POST"])
@@ -449,8 +411,6 @@ def delete_fireball():
     """Delete a saved fireball"""
 
     signed_in_email=session.get("user_email")
-    # user = crud.get_user_by_email(signed_in_email)
-    # print(signed_in_email)
 
     if signed_in_email is None:
         flash("You must be signed in!")
@@ -459,10 +419,8 @@ def delete_fireball():
     else: 
         user= User.query.filter(User.email==session["user_email"]).first()
         locator_id = request.form.get('fireball_id')
-        # print(user)
-        # print(locator_id)
+
         remove = crud.remove_saved_location(user, locator_id)
-        # print(remove)
         db.session.delete(remove)
         db.session.commit()
         flash("You deleted this fireball from your saves.")
@@ -475,7 +433,6 @@ def save_fireball_from_map():
     """Save fireball from map"""
 
     signed_in_email=session.get("user_email")
-    # # print(signed_in_email)
  
     if signed_in_email is None:
         flash("You must be signed in!")
@@ -487,18 +444,9 @@ def save_fireball_from_map():
     map_save=Saved.query.filter(Saved.user_id == user.user_id, Saved.locator_id== locator_id).first()
     # list_of_saves = Saved.query.filter(Saved.user_id == user.user_id).all()
 
-    # print(locator_id)
-    # print(list_of_saves)
-    # print("***")
-    # print(map_save)
-    # print("***&&****")
-    # print(list_of_saves)
-    # print("**((*****((((")
-
     # for save in list_of_saves:
     if map_save:
         flash("You saved this fireball already.")
-        # print("you *** already **")
 
     else:
 

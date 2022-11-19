@@ -14,11 +14,14 @@
   <div class = row>
     <div class = col-8 >
 
-        <h2> You are logged in {{ user.fname }}!</h2>
+      <h2> You are logged in {{ user.fname }}!</h2>
+      <div class = col-4>
+        <img id =profile_pic name="profile_pic" src="{{ user.profile_url }}" width ="100">
+      </div>
 
-        <div class = col-4>
-          <img src="{{ user.profile_url }}" width ="100">
-        </div>
+        <form action="/delete_profile_pic" method="POST">
+          <button type="submit">Remove</button>
+        </form>
 
         <br></br>
         <strong> First Name </strong> {{user.fname}}
@@ -57,7 +60,7 @@
 
   <!-- <form action="/delete_profile_pic" method="POST" enctype="multipart/form-data">
     <label for="Remove_fave_fireball">To remove profile pic</label>
-    <input type='file' name="remove_profile_pic" value= "{{ user.profile_url }}"  hidden>
+    <input type='file' name="remove_profile_pic" id= "profile_pic"  hidden>
     <button type="submit">Remove</button>
   </form> -->
 

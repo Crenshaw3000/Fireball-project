@@ -5,7 +5,6 @@
 </head>> 
 
 {% block body %}
-<h1>Change Password</h1>
 <nav>
     <section id="links-right">
       <a href="/">home</a>
@@ -13,26 +12,25 @@
 </nav>
 
 
-
 </ul>
-<h2>Security Question to login</h2>
+<h2>Security Questions</h2>
 <form action="/security_to_reset_pw" method="POST">
   <div class="input-box">
-
-<p> Answer all the security questions to login. </p> 
+<br></br>
+<p> Answer all the security questions to reset password. </p> 
 <div class="input-box">
-  <strong> Security Question 1: Where were you born? </strong>
+  <strong> Security Question 1:</strong> Where were you born? 
   <input type="text" placeholder= "Security Question 1" name="security1_reset" id="security1_reset">
 </div>
 
 
 <div class="input-box">
-  <strong> Security Question 2: Name of your high school? </strong>
+  <strong> Security Question 2:</strong> Name of your high school?
   <input type="text" placeholder= "Security Question 2" name="security2_reset" id="security2_reset">
 </div>
 
 <div class="input-box">
-  <strong> Security Question 3: What is your first pet's name? </strong>
+  <strong> Security Question 3:</strong> What is your first pet's name?
   <input type="text" placeholder= "Security Question 3" name="security3_reset" id="security3_reset">
 </div>
 

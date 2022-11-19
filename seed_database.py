@@ -48,7 +48,7 @@ for n in range(10):
     fname =  'fname_test'
     lname = 'lname_test'
     email = f'user{n}@test.com'  # Voila! A unique email!
-    password = 'test'
+    password = 'Test!test!test!1*'
     fave_anime = 'test_anime'
     profile_url = '/static/images/profile.png'
     security1 = 'test_security_1'
@@ -57,12 +57,13 @@ for n in range(10):
 
     user = crud.create_user(fname, lname, email, password, fave_anime, profile_url, security1, security2, security3)
     model.db.session.add(user)
+    model.db.session.commit()
 
     for _ in range(10):
         random_save = choice(locations_in_db)
 
         save = crud.create_saved_location(user, random_save)
-        model.db.session.add(random_save)
+        model.db.session.add(save)
         
 model.db.session.commit()
 
