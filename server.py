@@ -94,7 +94,6 @@ def upload_image():
             db.session.commit()
             flash("Profile picture uploaded.")
 
-    # if img_url is None:
     except:
         flash("Could not upload profile picture please try again.")
 
@@ -181,10 +180,10 @@ def register_user():
 
 
     if re.match(mat_email, email) and re.match(mat_pass, password):
-        flash("Email is vaild")
+        flash("Email is vaild.")
             
         if security1 or security2 or security3 is True:
-            flash("Security questions saved")
+            flash("Security questions saved.")
 
             user = crud.get_user_by_email(email)
             if user:
@@ -421,8 +420,7 @@ def delete_fireball():
         db.session.commit()
         flash("You deleted this fireball from your saves.")
 
-
-        return redirect("/my_saved_fireballs")
+    return redirect("/my_saved_fireballs")
 
 @app.route('/save_fireball', methods=["POST"])
 def save_fireball_from_map():
