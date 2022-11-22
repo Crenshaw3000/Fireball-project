@@ -1,24 +1,57 @@
 {% extends 'base.html' %}
 
 {% block title %} Fireball Cluster {% endblock %}
-
+<!doctype html>
+<head>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+ 
+ 
 {% block body %}
-<nav>
-    <section id="links-right">
-      <a href="/">home</a>
-    </section>
-</nav>
-<br></br>
 
+<body>
+    <div class="container"> 
+        <h1>Fireball Cluster</h1>
+        <p> Below are fireballs listed by the date and time that they sighted.</p>
+        <ul>
+            {% for fireball in fireballs %}
+            <li>
+                <a href="/fireballs/{{ fireball.locator_id }}">
+                {{ fireball.date }}
+            </li>
+        {% endfor %}
+        </ul>
 
-<h1>Fireball Cluster</h1>
-<p> Below are fireballs listed by the date and time that they sighted.</p>
-<ul>
-    {% for fireball in fireballs %}
-    <li>
-        <a href="/fireballs/{{ fireball.locator_id }}">
-        {{ fireball.date }}
-    </li>
-{% endfor %}
-</ul>
+        <style>
+            body {
+                background-image: url('/static/images/background.png');
+            }
+        
+        
+            h1 {
+            color: white;
+            text-align: center;
+            }
+            
+            h2 {
+            color: white;
+            text-align: center;
+            }
+        
+            p {
+                color: white;
+                text-align: center;
+            }
+            
+            .container {
+                margin: auto;
+                padding: 50px;
+                text-align: center;
+        
+        
+            }
+        </style>
+    </div>    
+</body>
+</html>
 {% endblock %}

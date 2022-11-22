@@ -1,38 +1,69 @@
+{% extends 'base.html' %}
+{% block title %}Data Visualization{% endblock %}
+
 <!doctype html>
 <html>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>
-      {% block title %}Data Visualization{% endblock %}
-    </title>
-
-    {% block head %}{% endblock %}
-    <nav>
-      <section id="links-right">
-        <a href="/">home</a>
-      </section>
-    </nav>
+    <link rel="stylesheet" href="/static/css/styles.css">
   </head>
+
+  {% block body %}
+
   <body>
-    <h2>Data Visualization</h2>
+    <h1>Data Visualization</h1>
 
-   
-    <img src="/static/images/Frequency of Impact Energy.png" alt="Frequency of Impact Energy">
-    <p> Fig. text</p>
+    <div class = container>
 
-    <img src="/static/images/Total Fireball Events Per Year.png" alt="Total Fireball Events Per Year">
-    <p> Fig. text</p>
+      <div class = row>
+        <div class = col-6 >
+
+        
+          <img src="/static/images/Frequency of Impact Energy.png" alt="Frequency of Impact Energy">
+          <p> Fig. text mmmmmmmmmmmmmmmmmmmmmmmmmm nnnnnnnnnnn yyyyyyyyyyyyyyyyy ggggggggggg</p>
+
+          <img src="/static/images/Total Fireball Events Per Year.png" alt="Total Fireball Events Per Year">
+          <p> Fig. text</p>
 
 
-    <img src="/static/images/Test Train split for Fireball Prediction.png" alt="Test Train split for Fireball Prediction">
-    <p> Fig. text</p>
+          <img src="/static/images/Test Train split for Fireball Prediction.png" alt="Test Train split for Fireball Prediction">
+          <p> Fig. text</p>
 
-    <img src="/static/images/Machine Learning Model for Fireball Prediction.png" alt="Machine Learning Model for Fireball Prediction">
-    <p> Fig. text</p>
+          <img src="/static/images/Machine Learning Model for Fireball Prediction.png" alt="Machine Learning Model for Fireball Prediction">
+          <p> Fig. text</p>
+        </div>  
+      </div>    
+    </div>
 
-    {% block body %}{% endblock %}
+    <style>       
+      body {
+        background-image: url('/static/images/background.png');
+        margin: 0;
+      }
+  
+      h1 {
+        color: white;
+        text-align: center;
+        padding: 50px;
 
-    {% block after_body %}{% endblock %}
+      }
+  
+      .container p {
+        text-align: center;
+
+      }
+      .container {
+          Background-color: white;
+          margin: auto;
+          width: 60%;
+          padding: 50px;
+
+        }
+  
+      </style>
+
+
   </body>
 </html>
+{% endblock %}
