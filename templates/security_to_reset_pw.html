@@ -1,37 +1,108 @@
 {% extends 'base.html' %}
 {% block title %} Reset Password {% endblock %}
-<head>
+<!doctype html>
+<html lang="en">
   <link rel="stylesheet" href="/static/css/styles.css">
-</head>> 
+</head>
 
 {% block body %}
 
+  <body>
+    <h1>Security Questions</h1>
+    <div class = "container">
+      <form action="/security_to_reset_pw" method="POST">
+        <div class="sq">
+          <p><strong>Answer all the security questions to reset password. </p> </strong>
+        <div>
+        <div class="sq">
+          <strong> Where were you born?</strong>  
+          <div class="field">
+            <input type="text" placeholder= "Security Question Answer" name="security1_reset" id="security1_reset">
+          </div>
+        </div>
+        <div class="sq">
+          <strong> Name of your high school?</strong> 
+            <div class="field">
+              <input type="text" placeholder= "Security Question Answer" name="security2_reset" id="security2_reset">
+            </div>
+        </div>
+        <div class="sq">
+          <strong> What is your first pet's name?</strong> 
+          <div class="field">
+            <input type="text" placeholder= "Security Question Answer" name="security3_reset" id="security3_reset">
+          </div>
+        </div>
 
-</ul>
-<h2>Security Questions</h2>
-<form action="/security_to_reset_pw" method="POST">
-  <div class="input-box">
-<br></br>
-<p> Answer all the security questions to reset password. </p> 
-<div class="input-box">
-  <strong> Security Question 1:</strong> Where were you born? 
-  <input type="text" placeholder= "Security Question 1" name="security1_reset" id="security1_reset">
-</div>
+        <button type="submit" class = "submit-btn">
+          Submit
+        </button>
+        <br></br>
+
+    
+      </form>
+    </div>
+
+    <style>
+      body {
+        background-image: url('/static/images/background.png');
+
+      }
+
+      h1 {
+        color: white;
+        text-align: center;
+        padding: 50px;
+      }
+
+    
+      .container {
+        background-color: white;
+        width: 60%;
+        font-family: 'Montserrat',sans-serif;
+        font-size: 15px;
+        text-align: center;
+      }
+
+      .field input{
+        width: 200px;
+        text-align: center;
+      
+      } 
+
+      
 
 
-<div class="input-box">
-  <strong> Security Question 2:</strong> Name of your high school?
-  <input type="text" placeholder= "Security Question 2" name="security2_reset" id="security2_reset">
-</div>
+      .submit-btn{
+        border: 8px;
+        outline: none;
+        margin-right: 10px;
+        background-color: #2691d9;
+        color: white;
+        font-size: 18px;
+        letter-spacing: 1px;
+        font-weight: 600;
+        border-radius: 12px;
+        cursor: pointer;
+        font-family: 'Montserrat',sans-serif;
+      } 
 
-<div class="input-box">
-  <strong> Security Question 3:</strong> What is your first pet's name?
-  <input type="text" placeholder= "Security Question 3" name="security3_reset" id="security3_reset">
-</div>
+      .submit-btn:hover {background-color: #0379c8}
 
-<p>
-  <input type="submit">
-</p>
-</form>
 
+      .sq{
+      text-align: center;
+      margin: 12px 0;
+      color: black;
+      background-color: white;
+      font-size: 15px;
+      border: white;
+      border-radius: 12px;
+      font-family: 'Poppins',sans-serif; 
+      }
+
+
+    </style>  
+
+  </body>
+</html>
 {% endblock %}

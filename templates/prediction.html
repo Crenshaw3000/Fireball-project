@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block title %} Fireball Predictions {% endblock %}
 <!doctype html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
@@ -12,13 +12,14 @@
 
   {% block body %}
   <body>
-    <div class = container>
-      <h1> Fireball Predictions </h1>
-      <br></br>
-        <b>
-          <p> Will there be more fireball in "pick year" than 2021?
-        </b>
-        <p> Select one from the given options:
+    <h1> Fireball Predictions </h1>
+    <div class = "container">
+        <div class="sp">
+          <p> <strong> Will there be more fireballs in "pick year" than 2021? </p> </strong> 
+        </div>
+        
+          <p> Select one from the given options:
+          
             <select id="prediction">
                 <option value="Yes, there will be 39 fireball events in 2022.">2022</option>
                 <option value="Yes, there will be 40 fireball events in 2023.">2023</option>
@@ -34,10 +35,14 @@
             </select>
         </p>
 
+        <div class="sp">
         <p> <strong> The prediction is: </strong>
+        </div>
           <span class="output"></span>
         </p>
-      <button onclick="getOption()"> Submit</button>
+      <br></br>
+      <button class = "submit-btn" onclick="getOption()"> Submit</button>
+      <br></br>
   </div>     
 
     
@@ -49,25 +54,60 @@
     }
     </script>
 
-      <style>       
-        body {
-          background-image: url('/static/images/background.png');
-          margin: 0;
-        }
+    <style>
+      body {
+        background-image: url('/static/images/background.png');
 
-        h1 {
-          color: white;
-          text-align: center;
-        }
+      }
 
-        p {
-          color: white;
-        }
-        .container {
-          margin: auto;
-          width: 50%;
-          padding: 50px;
-        }
+      h1 {
+        color: white;
+        text-align: center;
+        padding: 50px;
+      }
+
+
+      .container {
+        background-color: white;
+        text-align: center;
+        width: 60%;
+        font-family: 'Montserrat',sans-serif;
+        font-size: 15px;
+
+      }
+
+
+      .sp{
+      text-align: center;
+      margin: 12px 0;
+      color: black;
+      background-color: white;
+      font-size: 18px;
+      border: white;
+      font-family: 'Montserrat',sans-serif;
+      }
+
+      .submit-btn{
+        border: none;
+        outline: none;
+        background-color: #2691d9;
+        color:  white;
+        font-size: 18px;
+        letter-spacing: 1px;
+        font-weight: 600;
+        cursor: pointer;
+        font-family: 'Montserrat',sans-serif;
+        border-radius: 12px;
+
+      }
+      
+      .submit-btn:hover {background-color: #0379c8}
+ 
+
+    
+
+      </style>
+
 
 
         </style>

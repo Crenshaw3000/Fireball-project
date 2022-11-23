@@ -2,88 +2,195 @@
 
 {% block title %} Profile {% endblock %}
 <!doctype html>
-<head>
-    <link rel="stylesheet" href="/static/css/styles.css">
-</head>
+<html lang="en">
+  <head>
+      <link rel="stylesheet" href="/static/css/styles.css">
+  </head>
 
 {% block body %}
 <body> 
   <h1>Profile</h1>
+
   <div class = container>
-    <div class = row>
-      <div class = col-8 >
+    <!-- <div class = row>
+      <div class = col-8 > -->
 
         <h2> You are logged in {{ user.fname }}!</h2>
-        <div class = col-4>
+        <br></br>
+
+        <div class = "photo">
           <img id =profile_pic name="profile_pic" src="{{ user.profile_url }}" width ="100">
         </div>
 
-          <form action="/delete_profile_pic" method="POST">
-            <button type="submit">Remove</button>
-          </form>
+
 
           <br></br>
-          <strong> First Name </strong> {{user.fname}}
+          <p> <strong> First Name: </strong> {{user.fname}} </p>
+          <p> <strong> Last Name: </strong> {{user.lname}}</p>
+          <p> <strong> Email:  </strong> {{user.email}} </p>
+          <p> <strong> User ID:  </strong> {{user.user_id}} </p>
+          <p> <strong> Favorite Anime:  </strong> {{user.fave_anime}} </p>
           <br></br>
-          <strong> Last Name </strong> {{user.lname}}
-          <br></br>
-          <strong> Email  </strong> {{user.email}}
-          <br></br>
-          <strong> User ID  </strong> {{user.user_id}}
-          <br></br>
-          <strong> Favorite Anime  </strong> {{user.fave_anime}}
-          <br></br>
-          <br></br>
-          <br></br>
+
           <h2>Select a file to upload</h2>
-    
-    
+          <div class="field">
             <form method="post" action="/upload_profile_pic" enctype="multipart/form-data">
             
-                  <input type="file" name="my-file" autocomplete="off" required>
+                  <input type="file" id="file" name="my-file" autocomplete="off" required>
           
-                  <input type="submit" value="Submit">
+                  <input type="submit" id="submit" value="Submit"> 
             </form> 
+          </div>
+
+            <br></br>
+            <form action="/delete_profile_pic" method="POST">
+              <button type="submit" id="submit" class="submit-btn">Remove Photo</button>
+            </form>
             <br></br>
 
-        </div>
-      </div>
+
+
+            <div class="update_profile" id="update_profile">
+              <strong> Do you want to update your profile information? </strong>
+              <a title="Update Profile" class="update_profile" href="/update_profile"> <strong>Update Profile</strong></a>
+            </div>
+      
+            <br></br>
+            <div class="change_password" id="change_password">
+              <strong> Do you want to change your password?</strong>
+              <a title="Change Password" class="change_password" href="/change_password"><strong>Change Password</strong></a>
+            </div>
+            <br></br>
+
     </div>
 
 
 
-
-
-      <br></br>
-      <h3> Update Profile</h3>
-      <span class="update_profile">
-        <a title="Update Profile" class="update_profile" href="/update_profile">Update Profile</a>
-      </span>
-
-      <br></br>
-      <h3> Change Password</h3>
-      <span class="change_password">
-        <a title="Change Password" class="change_password" href="/change_password">Change Password</a>
-      </span>
-      <br></br>
-
-  <style>
-    body {
+    <style>
+      body {
         background-image: url('/static/images/background.png');
+
       }
 
       h1 {
-        color: white
+        color: white;
+        text-align: center;
+        padding: 50px;
       }
 
-      h3 {
-        color: white
-      }  
-  
+    
       .container {
         background-color: white;
+        text-align: center;
+        width: 60%;
+        font-family: 'Montserrat',sans-serif;
+        font-size: 15px;
       }
-    </style>
+
+      #profile_pic{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;   
+        text-align: center;
+        border: 8px ridge black;  
+        }
+
+      .submit-btn{
+        border: 10px;
+        outline: none;
+        background-color: #2691d9;
+        color: white;
+        font-size: 18px;
+        letter-spacing: 1px;
+        font-weight: 600;
+        cursor: pointer;
+        font-family: 'Montserrat',sans-serif;
+        border-radius: 12px;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto; 
+
+      } 
+
+      .submit-btn:hover {background-color: #0379c8}
+
+
+      /* .field input[type="submit"]{
+        background: #2691d9;
+        border: 1px solid #2691d9;
+        color: white;
+        font-size: 18px;
+        letter-spacing: 1px;
+        font-weight: 600;
+        cursor: pointer;
+        font-family: 'Montserrat',sans-serif;
+      }
+      .field input[type="submit"]:hover{
+        background: #2691d9;
+      }  */
+
+      /* .update_profile{
+        background: #2691d9;
+        border: 1px solid #2691d9;
+        color: white;
+        font-size: 18px;
+        letter-spacing: 1px;
+        font-weight: 600;
+        cursor: pointer;
+        font-family: 'Montserrat',sans-serif;
+        border-radius: 12px;
+        width: 30%;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;   
+
+      } */
+      .update_profile{
+        text-align: center;
+        margin: 10px 0;
+      }
+      .update_profile a{
+        color: blue;
+        text-decoration: none;
+        font-family: 'Montserrat',sans-serif;
+      }
+      .update_profile:hover a{
+        text-decoration: underline;
+      } 
+
+      .change_password{
+        text-align: center;
+        margin: 10px 0;
+      }
+      .change_password a{
+        color: blue;
+        text-decoration: none;
+        font-family: 'Montserrat',sans-serif;
+      }
+      .change_password:hover a{
+        text-decoration: underline;
+      } 
+ 
+
+      /* .change_password{
+        background: #2691d9;
+        border: 1px solid #2691d9;
+        color: white;
+        font-size: 18px;
+        letter-spacing: 1px;
+        font-weight: 600;
+        cursor: pointer;
+        font-family: 'Montserrat',sans-serif;
+        border-radius: 12px;
+        width: 30%;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;  
+
+      } */
+
+        
+      </style>
 </body>
 </html>
 

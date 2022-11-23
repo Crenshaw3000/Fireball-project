@@ -1,38 +1,101 @@
 {% extends 'base.html' %}
 
 {% block title %} My Saved Fireballs {% endblock %}
-<head>
-  <link rel="stylesheet" href="/static/css/styles.css">
-</head>> 
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="/static/css/styles.css">
+  </head>
 
 {% block body %}
-<nav>
-    <section id="links-right">
-      <a href="/">home</a>
-    </section>
-</nav>
-<h1>My Saved Fireballs</h1>
+  <body> 
+    <h1>My Saved Fireballs</h1>
+    <div class = "container">
+    <h2> Welcome {{user.fname}}!</h2>
+      <div class="sp"> 
+        <strong> <p>Below are the details of the saved fireballs. </p> </strong>
+      </div>
+      <br></br>
 
-<br></br>
+      <ul class="myUL">
+    {% for fireball in my_saves %}
+        <li>
+            <p><strong>Fireball Id:</strong> {{ fireball.locator.locator_id }} </p>
+            <p><strong>Fireball Latitude:</strong> {{ fireball.locator.latitude }}  </p>
+            <p><strong>Fireball Longitude:</strong> {{ fireball.locator.longitude }}  </p>
+            <p><strong>Fireball Impact Energy: </strong> {{ fireball.locator.energy }}  </p>
+        </li>
+        <form action="/delete_saved_fireball" method="POST">
+          <!-- <label for="Remove_fave_fireball">To Remove Fireball</label> -->
+          <input type='text' name="fireball_id" value={{fireball.locator.locator_id}} hidden>
+          <button type="submit" class="submit-btn">Remove Fireball</button>
+          <br></br>
+        </form>
+    {% endfor %}
+      </ul>
+      </div>
+    <br></br>
 
-<body> 
-  <h2> Welcome {{user.fname}}!</h2>
-  <ul>
-  {% for fireball in my_saves %}
-      <li>
-          Fireball Id: {{ fireball.locator.locator_id }}
-          Fireball Latitude: {{ fireball.locator.latitude }}
-          Fireball Longitude: {{ fireball.locator.longitude }}
-          Fireball Impact Energy: {{ fireball.locator.energy }}
-      </li>
-      <form action="/delete_saved_fireball" method="POST">
-        <label for="Remove_fave_fireball">To Remove Fireball</label>
-        <input type='text' name="fireball_id" value={{fireball.locator.locator_id}} hidden>
-        <button type="submit">Remove</button>
-      </form>
-  {% endfor %}
-  </ul>
-</body>
+    <style>
+      body {
+        background-image: url('/static/images/background.png');
+
+      }
+
+      h1 {
+        color: white;
+        text-align: center;
+        padding: 50px;
+      }
+
+    
+      .container {
+        background-color: white;
+        text-align: center;
+        width: 60%;
+        font-family: 'Montserrat',sans-serif;
+        font-size: 15px;
+      }
+
+      ul.myUL {
+        display: inline-block;
+        text-align: left;
+      }
+
+
+      .submit-btn{
+        border: 10px;
+        outline: none;
+        background-color: #2691d9;
+        color: white;
+        font-size: 15px;
+        letter-spacing: 1px;
+        font-weight: 600;
+        cursor: pointer;
+        font-family: 'Montserrat',sans-serif;
+        border-radius: 12px;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto; 
+
+      } 
+
+      .submit-btn:hover {background-color: #0379c8}
+
+      .sp{
+        text-align: center;
+        margin: 12px 0;
+        color: black;
+        background-color: white;
+        font-size: 18px;
+        border: white;
+        font-family: 'Montserrat',sans-serif;
+      }
+
+    </style>
+
+    </body>
+</html>
 {% endblock %}
 
 

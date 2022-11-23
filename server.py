@@ -330,7 +330,7 @@ def fireball_info():
             "longitude": locator.longitude,
             "ImpactEnergy": locator.energy
         }
-        for locator in Locator.query.limit(1000)
+        for locator in Locator.query.limit(145)
     ]
     print(fireballs)
     return jsonify(fireballs)

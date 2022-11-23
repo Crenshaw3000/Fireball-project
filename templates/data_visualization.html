@@ -15,53 +15,87 @@
     <h1>Data Visualization</h1>
 
     <div class = container>
+      <div class ="figure" id="figure">
+        <img src="/static/images/Frequency of Impact Energy.png" alt="Frequency of Impact Energy">
+      </div>
+      <div class="explain">
+         <p> Fig. text mmmmmmmmmmmmmmmmmmmmmmmmmm nnnnnnnnnnn yyyyyyyyyyyyyyyyy ggggggggggg</p>
+      </div>
 
-      <div class = row>
-        <div class = col-6 >
-
-        
-          <img src="/static/images/Frequency of Impact Energy.png" alt="Frequency of Impact Energy">
-          <p> Fig. text mmmmmmmmmmmmmmmmmmmmmmmmmm nnnnnnnnnnn yyyyyyyyyyyyyyyyy ggggggggggg</p>
-
+      <div class ="figure" id="figure">
           <img src="/static/images/Total Fireball Events Per Year.png" alt="Total Fireball Events Per Year">
+      </div>
+        <div class="explain">
           <p> Fig. text</p>
+       </div>
 
-
+       <div class ="figure" id="figure">
           <img src="/static/images/Test Train split for Fireball Prediction.png" alt="Test Train split for Fireball Prediction">
+        </div>
+        <div class="explain">
           <p> Fig. text</p>
+        </div>
 
+        <div class ="figure" id="figure">
           <img src="/static/images/Machine Learning Model for Fireball Prediction.png" alt="Machine Learning Model for Fireball Prediction">
+        </div>
+        <div class="explain">
           <p> Fig. text</p>
         </div>  
       </div>    
-    </div>
 
-    <style>       
+    <style>
       body {
         background-image: url('/static/images/background.png');
-        margin: 0;
+
       }
-  
+
       h1 {
         color: white;
         text-align: center;
         padding: 50px;
-
       }
-  
-      .container p {
-        text-align: center;
 
-      }
+
       .container {
-          Background-color: white;
-          margin: auto;
-          width: 60%;
-          padding: 50px;
+        background-color: white;
+        text-align: center;
+        width: 60%;
+        font-family: 'Montserrat',sans-serif;
+        font-size: 15px;
 
-        }
+        /* margin-left: auto;
+        margin-right: auto  */
+
+      }
+
+
+      .explain{
+      text-align: center;
+      margin: 12px 0;
+      color: black;
+      background-color: white;
+      font-size: 15px;
+      border: white;
+      font-family: 'Montserrat',sans-serif;
+      margin-left: auto;
+      margin-right: auto; 
+      }
+
+      .figure{
+        /* display: inline-block; */
+
+        width: 25px;
+        height: 25px; 
+        display: flex;
+
+      }
+
+
+    
+
   
-      </style>
+    </style>
 
 
   </body>

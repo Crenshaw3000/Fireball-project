@@ -2,56 +2,62 @@
 
 {% block title %} Fireball Cluster {% endblock %}
 <!doctype html>
-<head>
-    <link rel="stylesheet" href="/static/css/styles.css">
-</head>
- 
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="/static/css/styles.css">
+    </head>
  
 {% block body %}
-
-<body>
-    <div class="container"> 
+    <body>
         <h1>Fireball Cluster</h1>
-        <p> Below are fireballs listed by the date and time that they sighted.</p>
-        <ul>
-            {% for fireball in fireballs %}
-            <li>
-                <a href="/fireballs/{{ fireball.locator_id }}">
-                {{ fireball.date }}
-            </li>
-        {% endfor %}
-        </ul>
+        <div class="container"> 
+            <div class="sp"> 
+                <strong> <p> Below are fireballs listed by the date and time that they sighted. Click for fireball details. </p> </strong>
+            </div>
+            <ul>
+                {% for fireball in fireballs %}
+                <li>
+                    <a href="/fireballs/{{ fireball.locator_id }}">
+                    {{ fireball.date }}
+                </li>
+            {% endfor %}
+            </ul>
+        </div>    
 
         <style>
             body {
-                background-image: url('/static/images/background.png');
-            }
+            background-image: url('/static/images/background.png');
         
+            }
         
             h1 {
             color: white;
             text-align: center;
-            }
-            
-            h2 {
-            color: white;
-            text-align: center;
+            padding: 50px;
             }
         
-            p {
-                color: white;
-                text-align: center;
-            }
-            
+        
             .container {
-                margin: auto;
-                padding: 50px;
-                text-align: center;
+            background-color: white;
+            text-align: center;
+            width: 40%;
+            font-family: 'Montserrat',sans-serif;
+            font-size: 15px;
+        
+            }
         
         
+            .sp{
+            text-align: center;
+            margin: 12px 0;
+            color: black;
+            background-color: white;
+            font-size: 18px;
+            border: white;
+            font-family: 'Montserrat',sans-serif;
             }
         </style>
-    </div>    
-</body>
+        
+    </body>
 </html>
 {% endblock %}

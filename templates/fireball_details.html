@@ -1,38 +1,93 @@
 {% extends 'base.html' %}
 
-{% block title %}{{  fireball.date  }} - Details{% endblock %}
-<head>
-  <link rel="stylesheet" href="/static/css/styles.css">
-</head>> 
+{% block title %} {{  fireball.date  }} - Details {% endblock %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="/static/css/styles.css">
+  </head>
 
 {% block body %}
-<nav>
-  <section id="links-right">
-    <a href="/">home</a>
-  </section>
-</nav>
-
-<h1>Fireball date: {{ fireball.date }}</h1>
-
-<body>
-  <p>
-  <ul> 
-      <li>Latitude: {{ fireball.latitude }} </li>
-      <li>Longitude: {{ fireball.longitude }} </li>
-      <li>Log Impact Energy (kt): {{ fireball.energy }} </li>
-  </ul>
-  </p>
+<h1> Fireball Details</h1>
+<div class="container"> 
+<h2> Sighted fireball</h2>
+  <body>
+    <ul class="myUL">
+        <li><strong>Fireball date:</strong> {{ fireball.date }} </li>
+        <li><strong>Latitude:</strong> {{ fireball.latitude }}  </li>
+        <li><strong>Longitude:</strong> {{ fireball.longitude }} </li>
+        <li><strong> Impact Energy (kt):</strong> {{ fireball.energy }} </li>
+    </ul>
 
 
-  <form action="/fireballs/{{fireball.locator_id}}/save" method="POST">
-      <label for="user-save">Save location:</label>
-      <input type='text' name="fireball_id" value=fireball.id hidden>
-      <input type='text' name="fireball_lat" value=fireball.latitude hidden>
-      <input type='text' name="fireball_long" value=fireball.longitude hidden>
-      <input type='text' name="fireball_energy" value=fireball.energy hidden>
-  
-    <button type="submit">Save</button>
-  </form>
+    <form action="/fireballs/{{fireball.locator_id}}/save" method="POST">
+        <label for="user-save"><strong>Save fireball location</strong></label>
+        <input type='text' name="fireball_id" value=fireball.id hidden>
+        <input type='text' name="fireball_lat" value=fireball.latitude hidden>
+        <input type='text' name="fireball_long" value=fireball.longitude hidden>
+        <input type='text' name="fireball_energy" value=fireball.energy hidden>
+    
+        <button type="submit" class = "submit-btn">Save</button>
+      <br></br>
+    </form>
+
+    <style>
+      body {
+      background-image: url('/static/images/background.png');
+
+      }
+
+      h1 {
+      color: white;
+      text-align: center;
+      padding: 50px;
+      }
+
+
+      .container {
+      background-color: white;
+      text-align: center;
+      width: 60%;
+      font-family: 'Montserrat',sans-serif;
+      font-size: 15px;
+
+      }
+
+      ul.myUL {
+        display: inline-block;
+        text-align: left;
+      }
+
+      .sp{
+      text-align: center;
+      margin: 12px 0;
+      color: black;
+      background-color: white;
+      font-size: 18px;
+      border: white;
+      font-family: 'Montserrat',sans-serif;
+      }
+
+      .submit-btn{
+        border: 8px;
+        outline: none;
+        margin-right: 10px;
+        background-color: #2691d9;
+        color: white;
+        font-size: 18px;
+        letter-spacing: 1px;
+        font-weight: 600;
+        border-radius: 12px;
+        cursor: pointer;
+        font-family: 'Montserrat',sans-serif;
+      } 
+
+      .submit-btn:hover {background-color: #0379c8}
+
+  </style>
+
 </body>
+
+</html>
 
 {% endblock %}

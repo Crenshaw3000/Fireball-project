@@ -1,53 +1,178 @@
 {% extends 'base.html' %}
 {% block title %} Update Profile {% endblock %}
-<head>
-  <link rel="stylesheet" href="/static/css/styles.css">
-</head>> 
+<!doctype html>
+<html lang="en">
+  <head>
+      <link rel="stylesheet" href="/static/css/styles.css">
+  </head>
 
 {% block body %}
-
-<h1>Update Profile</h1>
-<br></br>
-
-<form action="/update_profile" method="POST">
-    <div class="input-box" >
-        Enter a new first name <input placeholder= "first name" name="fname" id="fname">
-    </div>
-    <br></br>
-
-    <div class="input-box">
-        Enter a new last name <input placeholder= "last name" name="lname" id="lname">
-    </div>
-    <br></br>
-
-    <div class="input-box">
-      Enter a new favorite anime <input placeholder= "favorite anime" name="fave_anime" id="fave_anime">
+<body>
+  <h1>Update Profile</h1>
+  <div class = container>
+    <div class="sq"> 
+      <p> <strong> Fill in all fields to update your profile. </strong> </p>
     </div>
 
-    <p>
-        <input type="submit" value="Submit">
-      </p>
-    </form>
+    <form action="/update_profile" method="POST">
+      <div class="sq"> 
+        <strong> Enter first name </strong>
+        <div class="field" >
+            <input placeholder= "First name" name="fname" id="fname">
+        </div>
+      </div>
 
-<br></br>
+      <div class="sq"> 
+        <strong> Enter last name </strong>
+        <div class="field">
+            <input placeholder= "Last name" name="lname" id="lname">
+        </div>
+      </div>
 
-<br></br>
-<h2> Change Password</h2>
-<span class="change_password">
-  <a title="Change Password" class="change_password" href="/change_password">Change Password</a>
-</span>
-<br></br>
+      <div class="sq"> 
+        <strong> Enter favorite anime </strong>
+        <div class="field">
+          <input placeholder= "Favorite anime" name="fave_anime" id="fave_anime">
+        </div>
+      </div>
+
+        <div>
+            <input type="submit" value="Submit" class="submit-btn">
+        </div>
+      </form>
 
 
+      <br></br>
+      <div class="change_password" id="change_password">
+        <strong> Do you want to change your password?</strong>
+        <a title="Change Password" class="change_password" href="/change_password"><strong>Change Password</strong></a>
+      </div>
+      <br></br>
+  </div>  
 
+  <style>
+    body {
+      background-image: url('/static/images/background.png');
+
+    }
+
+    h1 {
+      color: white;
+      text-align: center;
+      padding: 50px;
+    }
+
+  
+    .container {
+      background-color: white;
+      width: 60%;
+      font-family: 'Montserrat',sans-serif;
+      font-size: 15px;
+      text-align: center;
+    }
+
+    .field input{
+        width: 200px;
+        text-align: center;
+      
+      } 
+
+    /* #profile_pic{
+      display: block;
+      margin-left: auto;
+      margin-right: auto;   
+      text-align: center;
+      border: 8px ridge black;  
+      } */
+
+    .submit-btn{
+      border: 8px;
+      outline: none;
+      margin-right: 10px;
+      background-color: #2691d9;
+      color: white;
+      font-size: 18px;
+      letter-spacing: 1px;
+      font-weight: 600;
+      border-radius: 12px;
+      cursor: pointer;
+      font-family: 'Montserrat',sans-serif;
+    } 
+
+    .submit-btn:hover {background-color: #0379c8}
+
+
+    .sq{
+    text-align: center;
+    margin: 12px 0;
+    color: black;
+    background-color: white;
+    font-size: 15px;
+    border: white;
+    border-radius: 12px;
+    font-family: 'Poppins',sans-serif; 
+    }
+
+    /* .field input[type="submit"]{
+      background: #2691d9;
+      border: 1px solid #2691d9;
+      color: white;
+      font-size: 18px;
+      letter-spacing: 1px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: 'Montserrat',sans-serif;
+    }
+    .field input[type="submit"]:hover{
+      background: #2691d9;
+    }  */
+
+    /* .update_profile{
+      background: #2691d9;
+      border: 1px solid #2691d9;
+      color: white;
+      font-size: 18px;
+      letter-spacing: 1px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: 'Montserrat',sans-serif;
+    } */
+
+    /* .change_password{
+      background: #2691d9;
+      border: 1px solid #2691d9;
+      color: white;
+      font-size: 18px;
+      letter-spacing: 1px;
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: 12px;
+      width: 30%;
+      text-align: center;
+      margin-right: auto;
+      margin-left: auto;
+      font-family: 'Montserrat',sans-serif;
+    } */
+
+    .change_password{
+      text-align: center;
+      margin: 10px 0;
+    }
+    .change_password a{
+      color: blue;
+      text-decoration: none;
+      font-family: 'Montserrat',sans-serif;
+    }
+    .change_password:hover a{
+      text-decoration: underline;
+    } 
+
+      
+    </style>
+    
+  </body>
+</html>
     
 
 
-<br></br>
-<h2> Log out</h2>
-<span class="loginlogoutlink">
-  <a title="Log Out" class="loginlogoutlink-logout" href="/logout">Log Out</a>
-</span>
-
-
-  {% endblock %}
+{% endblock %}

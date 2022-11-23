@@ -1,7 +1,9 @@
-div.window-content {
+
+  div.window-content {
     overflow: hidden;
     display: flex;
     max-width: 300px;
+
   }
   
   .fireball-thumbnail {
