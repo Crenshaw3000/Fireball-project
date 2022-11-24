@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="en">
-<html>
   <head>
     <title>{% block title %}   Fireball Finder   {% endblock %}</title>
     <meta charset="utf-8">
@@ -13,6 +12,7 @@
 
     {% block head %}{% endblock %}
   </head>
+
 
 
   <body>
@@ -60,11 +60,34 @@
       </div>
     </nav>
 
-    {% for msg in get_flashed_messages() %}
-      <p class="flash-msg">
-        {{ msg }}
-      </p>
-    {% endfor %}
+    <div class = "wrappers">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+
+      {% for category, message in messages %}
+      <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+        <span>{{ message }}</span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {% endfor %}
+      
+      {% endif %}
+      {% endwith %}
+
+
+    </div>
+
+
+
+
+  <style>
+    div.wrappers{
+      background-color: transparent;
+      border-color: transparent;      
+
+    }
+
+  </style>
 
     {% block body %}{% endblock %}
 
@@ -75,3 +98,4 @@
   </body>
 
 </html>
+

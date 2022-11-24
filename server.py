@@ -38,11 +38,11 @@ def reset_password():
     user = crud.get_user_by_email(email)
     
     if user is None:
-        flash("Incorrect email! Try entering the email again.")
+        flash("Incorrect email! Try entering the email again.", "danger")
     
     if user:
         session["user_email"]=user.email
-        flash("Follow the instructions below.")
+        flash("Follow the instructions below.", "success")
    
     return redirect("/security_to_reset_pw")
 
@@ -66,7 +66,7 @@ def ask_for_security_questions():
         return redirect("/change_password")
 
     else:
-        flash("At least one of the answers are not correct. Please try again.")
+        flash("At least one of the answers are not correct. Please try again.", "danger")
 
 
 @app.route('/upload_profile_pic')
@@ -92,10 +92,10 @@ def upload_image():
         if img_url:
             user.profile_url = img_url
             db.session.commit()
-            flash("Profile picture uploaded.")
+            flash("Profile picture uploaded.", "success")
 
     except:
-        flash("Could not upload profile picture please try again.")
+        flash("Could not upload profile picture please try again.", "danger")
 
     return redirect("/profile")
 
@@ -106,7 +106,7 @@ def delete_profile_image():
     signed_in_email=session.get("user_email")
     
     if signed_in_email is None:
-        flash("You must be signed in!")
+        flash("You must be signed in!", "danger")
         return redirect("/")
     
     else:
@@ -116,7 +116,7 @@ def delete_profile_image():
 
         user.profile_url = "/static/images/profile.png"
         db.session.commit()
-        flash("Profile picture deleted.")
+        flash("Profile picture deleted.", "success")
 
     return redirect("/profile")
 
@@ -180,27 +180,27 @@ def register_user():
 
 
     if re.match(mat_email, email) and re.match(mat_pass, password):
-        flash("Email is vaild.")
+        flash("Email is vaild.", "success")
             
         if security1 or security2 or security3 is True:
-            flash("Security questions saved.")
+            flash("Security questions saved.", "success")
 
             user = crud.get_user_by_email(email)
             if user:
-                flash("An account with this email already exists.")
+                flash("An account with this email already exists.", "warning")
 
             else:
                 user = crud.create_user(fname, lname, email, password, fave_anime, profile_url, security1, security2, security3)
                 db.session.add(user)
                 db.session.commit()
-                flash("Account created successfully. Please log in.")
+                flash("Account created successfully. Please log in.", "danger")
 
 
         else:
-            flash("One or more fields are invalid! Please try again.")
+            flash("One or more fields are invalid! Please try again.", "danger")
     
     else:
-        flash("One or more fields are invalid! Please try again.")
+        flash("One or more fields are invalid! Please try again.", "danger")
 
     return redirect("/")
 
@@ -216,12 +216,12 @@ def login_user():
     
 
     if not match:
-        flash("This email or password is not correct. Try again.")
+        flash("This email or password is not correct. Try again.", "danger")
     else:
         session["user_email"]=match.email
         session["user_id"]=match.user_id
         session.modified = True
-        flash("Logged in!")
+        flash("Logged in!", "success")
     
     return redirect("/")
 
@@ -231,7 +231,7 @@ def show_user_details():
     signed_in_email=session.get("user_email")
 
     if signed_in_email is None:
-        flash("You must be signed in!")
+        flash("You must be signed in!", "danger")
         return redirect("/")
 
     else:  
@@ -252,7 +252,7 @@ def update_profile():
     user = User.query.filter(User.email==session["user_email"]).first()
 
     if signed_in_email is None:
-        flash("You must be signed in!")
+        flash("You must be signed in!", "danger")
         return redirect("/")
 
     
@@ -264,19 +264,19 @@ def update_profile():
     if new_fname:
         user.fname = new_fname
         db.session.commit()
-        flash("First name was updated.")
+        flash("First name was updated.", "success")
 
 
     if new_lname:
         user.lname = new_lname
         db.session.commit()
-        flash("Last name was updated.")
+        flash("Last name was updated.", "success")
 
 
     if new_fave_anime:
         user.fave_anime = new_fave_anime
         db.session.commit()
-        flash("Favorite anime was updated.")
+        flash("Favorite anime was updated.", "success")
     return redirect("/profile")
 
 @app.route('/change_password', methods=["GET"])
@@ -296,16 +296,16 @@ def change_password():
     updated_confirm_password = request.form.get('confirm_password')
 
     if signed_in_email is None:
-        flash("You must be signed in!")
+        flash("You must be signed in!", "danger")
         return redirect("/")
 
     if updated_new_password != updated_confirm_password:
-        flash("The passwords do not match. Please try again.")
+        flash("The passwords do not match. Please try again.", "danger")
 
     if updated_new_password == updated_confirm_password:
         user.password = updated_new_password
         db.session.commit()
-        flash("The password was updated.")
+        flash("The password was updated.", "success")
 
     return redirect("/profile")
 
@@ -360,7 +360,7 @@ def save_location(locator_id):
     signed_in_email=session.get("user_email")
 
     if signed_in_email is None:
-        flash("You must be signed in!")
+        flash("You must be signed in!", "danger")
         return redirect("/")
 
     # locator_id= request.form.get('fireballs_id')
@@ -371,7 +371,7 @@ def save_location(locator_id):
     # list_of_saves = Saved.query.filter(Saved.user_id == user.user_id).all()
 
     if map_save:
-        flash("You saved this fireball already.")
+        flash("You saved this fireball already.", "warning")
 
     else:
         # user = crud.get_user_by_email(signed_in_email)
@@ -380,7 +380,7 @@ def save_location(locator_id):
         save = crud.create_saved_location(user, locator)
         db.session.add(save)
         db.session.commit()
-        flash("You saved the coordinates for this fireball.")
+        flash("You saved the coordinates for this fireball.", "success")
 
     return redirect(f'/fireballs/{locator_id}')
 
@@ -391,7 +391,7 @@ def my_fireball_saves():
     signed_in_email=session.get("user_email")
 
     if signed_in_email is None:
-        flash("You must be signed in!")
+        flash("You must be signed in!", "danger")
         return redirect("/")
 
     else:
@@ -408,7 +408,7 @@ def delete_fireball():
     signed_in_email=session.get("user_email")
 
     if signed_in_email is None:
-        flash("You must be signed in!")
+        flash("You must be signed in!", "danger")
         return redirect("/")
 
     else: 
@@ -418,7 +418,7 @@ def delete_fireball():
         remove = crud.remove_saved_location(user, locator_id)
         db.session.delete(remove)
         db.session.commit()
-        flash("You deleted this fireball from your saves.")
+        flash("You deleted this fireball from your saves.", "success")
 
     return redirect("/my_saved_fireballs")
 
@@ -429,7 +429,7 @@ def save_fireball_from_map():
     signed_in_email=session.get("user_email")
  
     if signed_in_email is None:
-        flash("You must be signed in!")
+        flash("You must be signed in!", "danger")
         return redirect("/")
 
     locator_id= request.form.get('fireballs_id')
@@ -440,7 +440,7 @@ def save_fireball_from_map():
 
     # for save in list_of_saves:
     if map_save:
-        flash("You saved this fireball already.")
+        flash("You saved this fireball already.", " warning")
 
     else:
 
@@ -450,7 +450,7 @@ def save_fireball_from_map():
         print(save_fire)
         db.session.add(save_fire)
         db.session.commit()
-        flash("You added this fireball to you saves")
+        flash("You added this fireball to you saves", "success")
 
 
     return redirect("/my_saved_fireballs")
@@ -465,7 +465,7 @@ def logout():
     # print("this is the session after we do session pop")
     # print(session)
 
-    flash("You are now logged out")
+    flash("You are now logged out", "success")
 
     return redirect("/")
 

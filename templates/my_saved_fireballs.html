@@ -20,13 +20,12 @@
       <ul class="myUL">
     {% for fireball in my_saves %}
         <li>
-            <p><strong>Fireball Id:</strong> {{ fireball.locator.locator_id }} </p>
+            <p><strong>Fireball ID:</strong> {{ fireball.locator.locator_id }} </p>
             <p><strong>Fireball Latitude:</strong> {{ fireball.locator.latitude }}  </p>
             <p><strong>Fireball Longitude:</strong> {{ fireball.locator.longitude }}  </p>
             <p><strong>Fireball Impact Energy: </strong> {{ fireball.locator.energy }}  </p>
         </li>
         <form action="/delete_saved_fireball" method="POST">
-          <!-- <label for="Remove_fave_fireball">To Remove Fireball</label> -->
           <input type='text' name="fireball_id" value={{fireball.locator.locator_id}} hidden>
           <button type="submit" class="submit-btn">Remove Fireball</button>
           <br></br>
@@ -50,6 +49,7 @@
 
     
       .container {
+        padding: 20px;
         background-color: white;
         text-align: center;
         width: 60%;
