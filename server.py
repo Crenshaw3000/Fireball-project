@@ -62,11 +62,14 @@ def ask_for_security_questions():
     security2_reset =request.form.get("security2_reset")
     security3_reset =request.form.get("security3_reset")
 
+ 
     if user.security1 == security1_reset and user.security2 == security2_reset and user.security3 == security3_reset:
+        flash("Answers match.", "success")
         return redirect("/change_password")
 
     else:
         flash("At least one of the answers are not correct. Please try again.", "danger")
+        return redirect("/forgot_password")
 
 
 @app.route('/upload_profile_pic')
@@ -88,7 +91,8 @@ def upload_image():
         api_secret=CLOUDINARY_SECRET,
         cloud_name=CLOUD_NAME)
 
-        img_url = result['secure_url']    
+        img_url = result['secure_url']
+
         if img_url:
             user.profile_url = img_url
             db.session.commit()
@@ -180,7 +184,7 @@ def register_user():
 
 
     if re.match(mat_email, email) and re.match(mat_pass, password):
-        flash("Email is vaild.", "success")
+        flash("Email and password valid.", "success")
             
         if security1 or security2 or security3 is True:
             flash("Security questions saved.", "success")
@@ -291,6 +295,8 @@ def change_password():
     signed_in_email=session.get("user_email")
     user = User.query.filter(User.email==session["user_email"]).first()
     
+    mat_pass = re.compile(r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!*&]{13,20}$")
+    
 
     updated_new_password = request.form.get('new_password')
     updated_confirm_password = request.form.get('confirm_password')
@@ -298,17 +304,21 @@ def change_password():
     if signed_in_email is None:
         flash("You must be signed in!", "danger")
         return redirect("/")
-
-    if updated_new_password != updated_confirm_password:
-        flash("The passwords do not match. Please try again.", "danger")
-
-    if updated_new_password == updated_confirm_password:
-        user.password = updated_new_password
-        db.session.commit()
-        flash("The password was updated.", "success")
-
+    
+    if re.match(mat_pass, updated_new_password):
+        flash("Password valid.", "success")
+    
+        if updated_new_password == updated_confirm_password:
+            user.password = updated_new_password
+            db.session.commit()
+            flash("The password was updated.", "success")
+        
+        else:
+            flash("The passwords do not match. Please try again.", "danger")
+    else:
+        flash("Password invalid.", "danger")
+    
     return redirect("/profile")
-
 
 
 @app.route("/map/fireballs")
