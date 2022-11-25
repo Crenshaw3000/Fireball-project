@@ -3,246 +3,100 @@
 
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
-        <link href="stylesheet" href="/static/css/styles.css">
-    </head>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+  <link href="stylesheet" href="/static/css/styles.css">
+  <style>
+    form i {
+        margin-left: -30px;
+        cursor: pointer;
+    }
+</style>
+</head>
 {% block body %}
 
-<body>
-    <section class="wrapper">
-        <div id='stars'></div>
-        <div id='stars2'></div>
-        <div id='stars3'></div>
-        <!-- <div id='title'> -->
-            <!-- <span>PURE CSS</span>
-              <br />
-              <span>
-                PARALLAX PIXEL STARS
-              </span> -->
-        </div>
-
-        <div class = "container">
-            {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-      
-            {% for category, message in messages %}
-            <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
-              <span>{{ message }}</span>
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-
-            <div class = "container">
-                <div class="row">
-                  <div class = "col-sm-4">
-                    {% with messages = get_flashed_messages(category_filter=["danger"]) %}
-                    {% if messages %}
-                    {% for category, message in messages %}
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                      <span>{{ message }}</span>
-                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-          
-                    {% endfor %}
-                    {% endif %}
-                    {% endwith %}
-                  </div>
-                  <div class = "col-sm-4">
-
-                    
-
+  <body>
+      <section class="wrapper">
+          <div id='stars'></div>
+          <div id='stars2'></div>
+          <div id='stars3'></div>
+          <!-- <div id='title'> -->
+              <!-- <span>PURE CSS</span>
+                <br />
+                <span>
+                  PARALLAX PIXEL STARS
+                </span> -->
       </section>
-
-        <h2>Log In</h2>
-        <div class="login-wrapper"></div>
-        <form action="/login" method="POST" class ="form">
-            <div class="input-form">
-            Email <input type="text" name="email" placeholder= "email" id ="email">
-            </div>
-
-            <div class="input-group">
-                Password <input type="password" placeholder= "password" name="password" id="password">
-                <button type="button" class="bi bi-eye-slash" id="togglePassword"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-slash" viewBox="0 0 16 16">
-                <path d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z"/>
-                <path d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829l.822.822zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829z"/>
-                <path d="M3.35 5.47c-.18.16-.353.322-.518.487A13.134 13.134 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7.029 7.029 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12-.708.708z"/>
-                </svg>
-                </button>
-            </div>
         
-            <button type="submit" id="submit" class="btn btn-primary">
-            Log In
-            </button> 
-        </form>
-        </div>    
-
-
-  <h2> Register </h2>
-  <span class="register">
-    <a title="Register" class="register" href="/register">Register</a>
-  </span>
-
-  <h2> Forgot Password </h2>
-  <div id ="forgot_password" class="forgot_password">
-    <a title="Forgot Password" class="forgot_password" href="/forgot_password">Forgot Password</a>
-  </div>
-
-
-
-
-
-
+          <div class="container">
+            <h1>Sign In</h1>
+            <form>
+                <p>
+                    <label>Username:</label>
+                    <input type="text" 
+                        name="userID" id="userID">
+                </p>
+      
+                <p>
+                    <label>Password:</label>
+                    <input type="password" 
+                        name="password" id="password" />
+                    <i class="bi bi-eye-slash" 
+                        id="togglePassword"></i>
+                </p>
+      
+                <button type="submit" id="submit" 
+                    class="btn btn-primary">
+                    Log In
+                </button>
+            </form>
+        </div>
+        <script>
+          const togglePassword = document
+              .querySelector('#togglePassword');
     
+          const password = document.querySelector('#password');
+    
+          togglePassword.addEventListener('click', () => {
+    
+              // Toggle the type attribute using
+              // getAttribure() method
+              const type = password
+                  .getAttribute('type') === 'password' ?
+                  'text' : 'password';
+                    
+              password.setAttribute('type', type);
+    
+              // Toggle the eye and bi-eye icon
+              this.classList.toggle('bi-eye');
+          });
+      </script>
+
+      
+            
+
+
+      
       <style>
-        .login-wrapper {
-        height: 100vh;
-        width: 100vw;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        body {
+        padding: 20px;
+        margin: 0;
+        box-sizing: border-box;
+        color: #707070;
         }
-        .form {
-        position: relative;
-        width: 100%;
-        max-width: 380px;
-        padding: 80px 40px 40px;
-        background: rgba(0,0,0,0.7);
-        border-radius: 10px;
-        color: #fff;
-        box-shadow: 0 15px 25px rgba(0,0,0,0.5);
-        }
-        .form::before {
-        content:'';
+        span.field-icon {
+        float: right;
         position: absolute;
-        top: 0;
-        left: 0;
-        width: 50%;
-        height: 100%;
-        background: rgba(255,255,255, 0.08);
-        transform: skewX(-26deg);
-        transform-origin: bottom left;
-        border-radius: 10px;
-        pointer-events: none;
-        }
-        .form img {
-        position: absolute;
-        top: -50px;
-        left: calc(50% - 50px);
-        width: 100px;
-        background: rgba(255,255,255, 0.8);
-        border-radius: 50%;
-        }
-        .form h2 {
-        text-align: center;
-        letter-spacing: 1px;
-        margin-bottom: 2rem;
-        color: #ff652f;
-        }
-        .form .input-group {
-        position: relative;
-        }
-        .form .input-group input {
-        width: 100%;
-        padding: 10px 0;
-        font-size: 1rem;
-        letter-spacing: 1px;
-        margin-bottom: 30px;
-        border: none;
-        border-bottom: 1px solid #fff;
-        outline: none;
-        background-color: transparent;
-        color: inherit;
-        }
-        .form .input-group label {
-        position: absolute;
-        top: 0;
-        left: 0;
-        padding: 10px 0;
-        font-size: 1rem;
-        pointer-events: none;
-        transition: .3s ease-out;
-        }
-        .form .input-group input:focus + label,
-        .form .input-group input:valid + label {
-        transform: translateY(-18px);
-        color: #ff652f;
-        font-size: .8rem;
-        }
-        .submit-btn {
-        display: block;
-        margin-left: auto;
-        border: none;
-        outline: none;
-        background: #ff652f;
-        font-size: 1rem;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        padding: 10px 20px;
-        border-radius: 5px;
+        right: 10px;
+        top: 10px;
         cursor: pointer;
-        }
-        .forgot-pw {
-        color: inherit;
+        z-index: 2;
         }
 
-        #forgot-pw {
-        position: absolute;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 0;
-        z-index: 1;
-        background: #fff;
-        opacity: 0;
-        transition: 0.6s;
-        }
-        #forgot-pw:target {
-        height: 100%;
-        opacity: 1;
-        }
-        .close {
-        position: absolute;
-        right: 1.5rem;
-        top: 0.5rem;
-        font-size: 2rem;
-        font-weight: 900;
-        text-decoration: none;
-        color: inherit;
-        }
-        Footer
-
-        html {
-        height: 100%;
-        overflow: hidden;
-        background: radial-gradient(ellipse at bottom, #1b2735 0%,#090a0f 100%);
-        }
-
-        /* #title {
-            position: absolute;
-            top: 50%;
-            left: 0;
-            right: 0;
-            color: #fff;
-            text-align: center;
-            font-family: Lato;
-            font-weight: 300;
-            font-size: 50px;
-            letter-spacing: 10px;
-            margin-top: -60px;
-            padding-left: 10px;
-        }
-
-        #title span {
-            background: -webkit-linear-gradient(white, #38495a);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        } */
+        
 
         #stars {
             width: 1px;
@@ -811,9 +665,33 @@
         }
       </style>
 
+    <script> 
+    var clicked = 0;
+
+      $(".toggle-password").click(function (e) {
+          e.preventDefault();
+    
+        $(this).toggleClass("toggle-password");
+          if (clicked == 0) {
+            $(this).html('<span class="material-icons">visibility_off</span >');
+              clicked = 1;
+          } else {
+              $(this).html('<span class="material-icons">visibility</span >');
+              clicked = 0;
+            }
+    
+        var input = $($(this).attr("toggle"));
+        if (input.attr("type") == "password") {
+            input.attr("type", "text");
+        } else {
+            input.attr("type", "password");
+        }
+    });
+    </script>
+
     <script src="/static/js/toggleEye.js"></script>
 
-</body>
+  </body>
 </html>
 
 

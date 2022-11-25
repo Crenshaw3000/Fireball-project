@@ -43,8 +43,9 @@ def reset_password():
     if user:
         session["user_email"]=user.email
         flash("Follow the instructions below.", "success")
-   
-    return redirect("/security_to_reset_pw")
+        return redirect("/security_to_reset_pw")
+    
+    return redirect("/")
 
 @app.route('/security_to_reset_pw',  methods=["GET"])
 def get_security_for_reset_form():
@@ -116,7 +117,7 @@ def delete_profile_image():
     else:
 
         user = User.query.filter(User.email==session["user_email"]).first()
-        print(user)
+        # print(user)
 
         user.profile_url = "/static/images/profile.png"
         db.session.commit()
@@ -227,7 +228,7 @@ def login_user():
         session.modified = True
         flash("Logged in!", "success")
     
-    return redirect("/")
+    return redirect("/about")
 
 @app.route('/profile')
 def show_user_details():
@@ -450,7 +451,7 @@ def save_fireball_from_map():
 
     # for save in list_of_saves:
     if map_save:
-        flash("You saved this fireball already.", " warning")
+        flash("You saved this fireball already.", "warning")
 
     else:
 
@@ -470,11 +471,11 @@ def save_fireball_from_map():
 def logout():
     """ log out current user"""
     # print("this is the session before we do session pop")
-    # print(session)
+    # print(session
+    
     session.pop("user_email", None)
     # print("this is the session after we do session pop")
     # print(session)
-
     flash("You are now logged out", "success")
 
     return redirect("/")
