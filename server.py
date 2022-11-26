@@ -228,7 +228,7 @@ def login_user():
         session.modified = True
         flash("Logged in!", "success")
     
-    return redirect("/about")
+    return redirect("/")
 
 @app.route('/profile')
 def show_user_details():
