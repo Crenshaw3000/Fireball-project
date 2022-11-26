@@ -11,7 +11,7 @@
   
   {% block body %}
   <body>
-    <h1>About</h1>
+    <div class="title"h1>About</h1></div>
     <div class="container">
       <br></br>
       <button class="accordion">Where does the data come from?</button>
@@ -35,17 +35,29 @@
 
     <style>
 
+
+    
     html {
       height: 100%;
       overflow: hidden;
     
       }
 
-      .container{
+      div.container{
         text-align: center;
-
+        background-color: black;
       }
+ 
 
+      .title {
+        color: white;
+        text-align: center;
+        padding: 50px; 
+        background-color: black;
+        font-size: 50px;
+        font-weight: 600;
+        
+      }
 
       
       .accordion {
@@ -53,7 +65,7 @@
         color: white;
         cursor: pointer;
         padding: 18px;
-        width: 70%;
+        width: 100%;
         border: none;
         text-align: center;
         outline: none;
@@ -80,11 +92,11 @@
       }
       
       .panel {
-        padding: 0 18px;
+        padding: 18px;
         display: none;
         background-color: white;
         overflow: hidden;
-        width: 70%;
+        width: 100%;
         text-align: center;
         margin-right: auto;
         margin-left: auto;
@@ -92,14 +104,11 @@
       }
 
 
-      h1 {
-        color: white;
-        text-align: center;
-        padding: 50px;      }
+
   
-      p {
+      /* p {
         background-color: white;
-      }
+      } */
 
 
 

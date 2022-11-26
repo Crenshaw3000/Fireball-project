@@ -32,13 +32,12 @@
           <p> <strong> Favorite Anime:  </strong> {{user.fave_anime}} </p>
           <br></br>
 
-          <h2>Select a file to upload</h2>
+          <h3>Select a file to upload</h3>
           <div class="field">
-            <form method="post" action="/upload_profile_pic" enctype="multipart/form-data">
-            
-                  <input type="file" id="file" name="my-file" autocomplete="off" required>
+            <form method="post" action="/upload_profile_pic" enctype="multipart/form-data">            
+                  <input type="file" id="file" name="my-file" autocomplete="off" required class="custom-file-upload">
           
-                  <input type="submit" id="submit" value="Submit"> 
+                  <input type="submit" id="submit" value="Submit" class="submit-btn"> 
             </form> 
           </div>
 
@@ -94,23 +93,70 @@
         }
 
       .submit-btn{
-        border: 10px;
+        border: none;
         outline: none;
-        background-color: #2691d9;
+        background-color: orangered;
         color: white;
         font-size: 18px;
         letter-spacing: 1px;
         font-weight: 600;
         cursor: pointer;
         font-family: 'Montserrat',sans-serif;
-        border-radius: 12px;
+        border-radius: 6px;
         text-align: center;
-        margin-left: auto;
-        margin-right: auto; 
+        /* margin-left: auto;
+        margin-right: auto;  */
 
       } 
 
       .submit-btn:hover {background-color: #0379c8}
+/* 
+      .file{
+        border: none;
+        outline: none;
+        background-color: orangered;
+        color: white;
+        font-size: 18px;
+        letter-spacing: 1px;
+        font-weight: 600;
+        cursor: pointer;
+        font-family: 'Montserrat',sans-serif;
+        border-radius: 6px;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto; 
+
+      }  */
+
+      input[type="file"]::file-selector-button {
+        outline: orangered;
+        background-color: orangered;
+        border: orangered;
+        color: white;
+        font-size: 18px;
+        letter-spacing: 1px;
+        font-weight: 600;
+        font-family: 'Montserrat',sans-serif;
+        border-radius: 6px;
+        text-align: center;
+        cursor: pointer;
+      }
+
+      input[type="file"]::file-selector-button:hover {
+        background-color: purple;
+        border: 2px solid purple;
+      }
+
+    /* .custom-file-upload {
+      color: orangered
+      border: 1px solid #ccc; */
+      /* display: inline-block;
+      padding: 6px 12px;
+      cursor: pointer;
+    } */
+
+
+
 
 
       .update_profile{
