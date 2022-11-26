@@ -20,9 +20,11 @@
         <header>Register</header>
         <form action="/register" method="POST">
             <div class="field">
+                <span id= "symbol" class="material-symbols-outlined">person</span>
                 <input type="text" name="email" placeholder= "email" id ="email">
             </div>
             <div class="field space">
+                <span id="symbol" class="material-symbols-outlined">lock</span>
                 <input type="password" placeholder= "password" name="password" id="password">
                 <i id= "visibilityBtn" ><span id="icon" class="material-symbols-outlined">visibility</span></i>
             </div>
@@ -93,7 +95,11 @@
             margin-top: 10px;
             cursor: pointer;
         }
-
+   
+        #symbol{
+            margin-top: 10px;
+            color: black ;
+        }
 
         .content{
             position: absolute;

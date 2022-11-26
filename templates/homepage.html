@@ -9,10 +9,10 @@
   <!-- star animation -->
   <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
   <link href="stylesheet" href="/static/css/styles.css">
-
-<!-- login styling -->
+<!-- 
+login styling
   <link rel="stylesheet" href="/static/css/styles.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/> -->
   
 </head>
 
@@ -24,9 +24,11 @@
          <header>Login Form</header>
          <form action="/login" method="POST">
             <div class="field">
+                  <span id= "symbol" class="material-symbols-outlined">person</span>
                   <input type="text" name="email" placeholder= "email" id ="email">
                   </div>
                   <div class="field space">
+                    <span id="symbol" class="material-symbols-outlined">lock</span>
                       <input type="password" placeholder= "password" name="password" id="password">
                       <i id= "visibilityBtn" ><span id="icon" class="material-symbols-outlined">visibility</span></i>
                   </div>    
@@ -62,6 +64,12 @@
     overflow: hidden;
   
     }
+/* 
+    .field span{
+    color: #222;
+    width: 40px;
+    line-height: 45px;
+    } */
     
 
     .wrapper{
@@ -71,6 +79,11 @@
     i{
       margin-top: 10px;
       cursor: pointer;
+    }
+
+    #symbol{
+      margin-top: 10px;
+      color: black ;
     }
 
     .content{
