@@ -9,11 +9,6 @@
   <!-- star animation -->
   <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
   <link href="stylesheet" href="/static/css/styles.css">
-<!-- 
-login styling
-  <link rel="stylesheet" href="/static/css/styles.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/> -->
-  
 </head>
 
 {% block body %}
@@ -64,18 +59,9 @@ login styling
       box-sizing: border-box;
     }
 
-    /* html {
-    height: 100%;
-    overflow: hidden;
-  
-    } */
-/* 
-    .field span{
-    color: #222;
-    width: 40px;
-    line-height: 45px;
-    } */
-    
+    html{
+      overflow-x: hidden;
+    }
 
     .wrapper{
       background-color: #181818;    
@@ -103,6 +89,7 @@ login styling
       background: rgba(255,255,255,0.04);
       box-shadow: -1px 4px 28px 0px rgba(0,0,0,0.75);
     }
+    
     .content header{
       color: white;
       font-size: 33px;
@@ -146,22 +133,6 @@ login styling
     }  
 
     #submit:hover {background-color: #0379c8}
-/* 
-    .submit-btn{
-      border: none;
-      outline: none;
-      background-color: #2691d9;
-      font-size: 18px;
-      letter-spacing: 1px;
-      font-weight: 600;
-      cursor: pointer;
-      font-family: 'Montserrat',sans-serif;
-
-    }  */
-/* 
-    .submit-btn:hover{
-      background: #2691d9;
-    } */
 
     .pass{
       text-align: left;
@@ -172,6 +143,7 @@ login styling
       text-decoration: none;
       font-family: 'Poppins',sans-serif;
     }
+    
     .pass:hover a{
       text-decoration: underline;
     } 
@@ -192,7 +164,7 @@ login styling
     /* star background */
     html {
       height: 100%;
-      overflow: scroll;
+      overflow-x: hidden;
       background: radial-gradient(ellipse at bottom, #1b2735 0%,#090a0f 100%);
       background-size: cover;
     }
