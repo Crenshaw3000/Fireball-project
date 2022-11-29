@@ -9,32 +9,36 @@
 
 {% block body %}
 <h1> Fireball Details</h1>
-<div class="container"> 
-<h2> Sighted fireball</h2>
   <body>
-    <ul class="myUL">
-        <li><strong>Fireball date:</strong> {{ fireball.date }} </li>
-        <li><strong>Latitude:</strong> {{ fireball.latitude }}  </li>
-        <li><strong>Longitude:</strong> {{ fireball.longitude }} </li>
-        <li><strong> Impact Energy (kt):</strong> {{ fireball.energy }} </li>
-    </ul>
+  <div class="container"> 
+    <h2> Sighted fireball</h2>
+      <ul class="myUL">
+          <li><strong>Fireball date:</strong> {{ fireball.date }} </li>
+          <li><strong>Latitude:</strong> {{ fireball.latitude }}  </li>
+          <li><strong>Longitude:</strong> {{ fireball.longitude }} </li>
+          <li><strong> Impact Energy (kt):</strong> {{ fireball.energy }} </li>
+      </ul>
 
 
-    <form action="/fireballs/{{fireball.locator_id}}/save" method="POST">
-        <label for="user-save"><strong>Save fireball location</strong></label>
-        <input type='text' name="fireball_id" value=fireball.id hidden>
-        <input type='text' name="fireball_lat" value=fireball.latitude hidden>
-        <input type='text' name="fireball_long" value=fireball.longitude hidden>
-        <input type='text' name="fireball_energy" value=fireball.energy hidden>
-    
-        <button type="submit" class = "submit-btn">Save</button>
-    </form>
+      <form action="/fireballs/{{fireball.locator_id}}/save" method="POST">
+          <label for="user-save"><strong>Save fireball location</strong></label>
+          <input type='text' name="fireball_id" value=fireball.id hidden>
+          <input type='text' name="fireball_lat" value=fireball.latitude hidden>
+          <input type='text' name="fireball_long" value=fireball.longitude hidden>
+          <input type='text' name="fireball_energy" value=fireball.energy hidden>
+      
+          <button type="submit" class = "submit-btn">Save</button>
+      </form>
+    </div>
 
     <style>
       html {
       height: 100%;
-      overflow: hidden;
     
+      }
+
+      body {
+      background-image: url('/static/images/background.png');
       }
 
       h1 {
