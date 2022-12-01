@@ -1,7 +1,7 @@
 # Fireball Finder <br />
 
 Fireball Finder is a full stack web app that allows users view NASA's fireball and bolide events and save an event details to their favorites. The user can also
-interact with the linear regression supervised learning model, a machine learning model, to see predictions of fireball and bolide events per year . 
+interact with the linear regression supervised learning model, a machine learning model, to see predictions of fireball and bolide events per year. 
 
 ![Homepage](/static/images/homepage.gif "Homepage") <br />
 
@@ -36,7 +36,7 @@ interact with the linear regression supervised learning model, a machine learnin
 * Google Maps
 
 ### Installation
-To run Fireball Finder on your computer: 
+#### To run Fireball Finder on your computer
 
  Clone or fork the repository:
  ```
@@ -46,6 +46,7 @@ Create a virtual environment inside of your fireball finder directory:
 ```
 $ virtualenv env
 $ source env/bin/activate
+```
 
 Install dependencies:
 ```
@@ -78,6 +79,6 @@ $ python3 server.py
 ```
 
 To view app in web browser, insert into the browser:
-````
+```
  localhost:5000
  ```
