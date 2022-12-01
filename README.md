@@ -7,9 +7,9 @@ interact with the linear regression supervised learning model, a machine learnin
 
 
 ## Contents
--[Technologies] (#technologies)
--[API] (#api)
--[Installation] (#installation)
+* [Technologies] (#technologies)
+* [API] (#api)
+* [Installation] (#installation)
 
 
 ### Technologies
