@@ -7,12 +7,12 @@ interact with the linear regression supervised learning model, a machine learnin
 
 
 ## Contents
-* [Technologies] (#technologies)
+* [Technologies] (docs/Technologies.md)
 * [API] (#api)
 * [Installation] (#installation)
 
 
-### Technologies
+## Technologies
 * Python 3.9
 * Flask
 * PostgresSQL
@@ -31,11 +31,11 @@ interact with the linear regression supervised learning model, a machine learnin
 
 
 
-### API
+## API
 * Cloudinary
 * Google Maps
 
-### Installation
+## Installation
 #### To run Fireball Finder on your computer
 
  Clone or fork the repository:
