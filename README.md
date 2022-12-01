@@ -19,7 +19,6 @@ interact with the linear regression supervised learning model, a machine learnin
 * SQL Alchemy
 * Jinja
 * JavaScript
-* JQuery
 * Bootstrap
 * HTML/CSS
 * Anaconda
