@@ -7,12 +7,12 @@ interact with the linear regression supervised learning model, a machine learnin
 
 
 ## Contents
-* [Technologies] (https://github.com/Crenshaw3000/Fireball-project#technologies)
-* [API] (https://github.com/Crenshaw3000/Fireball-project#api)
-* [Installation] (https://github.com/Crenshaw3000/Fireball-project#installation)
+* [Technologies] (#technologies)
+* [API] (#api)
+* [Installation] (#installation)
 
 
-## Technologies
+## <a name="technologies"></a>Technologies
 * Python 3.9
 * Flask
 * PostgresSQL
@@ -31,12 +31,12 @@ interact with the linear regression supervised learning model, a machine learnin
 
 
 
-## API
+## <a name="api"></a>API
 * Cloudinary
 * Google Maps
 
-## Installation
-### To run Fireball Finder on your computer
+## <a name="installation"></a>Installation
+#### To run Fireball Finder on your computer
 
  Clone or fork the repository:
  ```
