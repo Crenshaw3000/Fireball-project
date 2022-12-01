@@ -7,9 +7,9 @@ interact with the linear regression supervised learning model, a machine learnin
 
 
 ## Contents
-* [Technologies] (docs/Technologies.md)
-* [API] (#api)
-* [Installation] (#installation)
+* [Technologies] (https://github.com/Crenshaw3000/Fireball-project#technologies)
+* [API] (https://github.com/Crenshaw3000/Fireball-project#api)
+* [Installation] (https://github.com/Crenshaw3000/Fireball-project#installation)
 
 
 ## Technologies
@@ -36,7 +36,7 @@ interact with the linear regression supervised learning model, a machine learnin
 * Google Maps
 
 ## Installation
-#### To run Fireball Finder on your computer
+### To run Fireball Finder on your computer
 
  Clone or fork the repository:
  ```
