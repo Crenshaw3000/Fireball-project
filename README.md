@@ -7,12 +7,12 @@ interact with the linear regression supervised learning model, a machine learnin
 
 
 ## Contents
-* [Technologies] (#technologies)
-* [API] (#api)
-* [Installation] (#installation)
+- [Technologies](#technologies)
+* [API](#api)
+* [Installation](#installation) <br />
 
 
-## <a name="technologies"></a>Technologies
+## <a name="technologies"></a> Technologies
 * Python 3.9
 * Flask
 * PostgresSQL
@@ -27,15 +27,15 @@ interact with the linear regression supervised learning model, a machine learnin
 * Pandas
 * Jupyter Notebook
 * Matplotlib
-* Scikit learn
+* Scikit learn <br />
 
 
 
-## <a name="api"></a>API
+## <a name="api"></a> APIs
 * Cloudinary
-* Google Maps
+* Google Maps <br />
 
-## <a name="installation"></a>Installation
+## <a name="installation"></a> Installation
 #### To run Fireball Finder on your computer
 
  Clone or fork the repository:
