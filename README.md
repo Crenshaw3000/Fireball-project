@@ -1,4 +1,10 @@
 # Fireball Finder <br />
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/Crenshaw3000/Fireball-project)
+![GitHub all releases](https://img.shields.io/github/downloads/Crenshaw3000/Fireball-project/total)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/Crenshaw3000/Fireball-project)
+![GitHub issues](https://img.shields.io/github/issues/Crenshaw3000/Fireball-project)
+![GitHub contributors](https://img.shields.io/github/contributors/Crenshaw3000/Fireball-project)
+![GitHub Repo stars](https://img.shields.io/github/stars/Crenshaw3000/Fireball-project?style=social)
 
 Fireball Finder is a full stack web app that allows users view NASA's fireball and bolide events and save an event details to their favorites. The user can also
 interact with the linear regression supervised learning model, a machine learning model, to see predictions of fireball and bolide events per year. 
