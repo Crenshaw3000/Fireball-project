@@ -15,6 +15,7 @@ interact with the linear regression supervised learning model, a machine learnin
 ## Contents
 * [Technologies](#technologies)
 * [API](#api)
+* [Features] (#features)
 * [Installation](#installation) <br />
 
 
@@ -39,6 +40,10 @@ interact with the linear regression supervised learning model, a machine learnin
 ## <a name="api"></a> APIs
 * Cloudinary
 * Google Maps <br />
+
+## <a name="features"></a>Features
+
+
 
 ## <a name="installation"></a> Installation
 #### To run Fireball Finder on your computer
