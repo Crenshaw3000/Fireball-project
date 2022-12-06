@@ -17,7 +17,7 @@ The web app can be visited [here](http://fireballfinder.com/)
 ## Contents
 * [Technologies](#technologies)
 * [API](#api)
-* [Features] (#features)
+* [Features](#features)
 * [Installation](#installation) <br />
 
 
