@@ -64,7 +64,7 @@ This is a **Flask web application** that tracks and visualizes meteor fireball d
 
 ## Technical Stack
 
-- **Backend**: Flask with SQLAlchemy ORM
+- **Backend**: Flask with SQLAlchemy Object-Relational Mapping
 - **Database**: PostgreSQL with three main tables (Users, Locators, Saved)
 - **Frontend**: HTML templates with Jinja2, Google Maps integration
 - **Cloud Services**: Cloudinary for image storage
