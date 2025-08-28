@@ -45,8 +45,6 @@ The web app can be visited [here](http://fireballfinder.com/)
 
 ## <a name="features"></a>Features
 
-# Fireball Locator App Summary
-
 This is a **Flask web application** that tracks and visualizes meteor fireball data, allowing users to explore fireball locations, save favorites, and manage their profiles.
 
 ## Core Functionality
