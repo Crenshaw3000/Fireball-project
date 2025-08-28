@@ -38,12 +38,49 @@ The web app can be visited [here](http://fireballfinder.com/)
 * Scikit learn <br />
 
 
-
 ## <a name="api"></a> APIs
 * Cloudinary
 * Google Maps <br />
 
+
 ## <a name="features"></a>Features
+
+# Fireball Locator App Summary
+
+This is a **Flask web application** that tracks and visualizes meteor fireball data, allowing users to explore fireball locations, save favorites, and manage their profiles.
+
+## Core Functionality
+
+- **Fireball Tracking**: Displays meteor fireball locations on interactive maps using Google Maps API
+- **User Accounts**: Registration, login, password recovery with security questions
+- **Save System**: Users can save/unsave fireball locations to their personal collection
+- **Profile Management**: Photo uploads via Cloudinary, update personal information
+
+## Key Features
+
+- **Interactive Maps**: View fireballs on Google Maps with coordinate data
+- **Data Visualization**: Dedicated page for fireball data analysis
+- **Prediction Model**: Page for fireball prediction functionality
+- **Secure Authentication**: Password validation, security questions for recovery
+- **Photo Management**: Upload/delete profile pictures stored in cloud
+
+## Technical Stack
+
+- **Backend**: Flask with SQLAlchemy ORM
+- **Database**: PostgreSQL with three main tables (Users, Locators, Saved)
+- **Frontend**: HTML templates with Jinja2, Google Maps integration
+- **Cloud Services**: Cloudinary for image storage
+- **Data**: JSON-based fireball coordinate dataset
+
+## Database Design
+
+- **Users**: Account info, security questions, profile photos
+- **Locators**: Fireball coordinates (lat/lng), dates, energy levels
+- **Saved**: Many-to-many relationship linking users to their saved fireballs
+
+The app combines astronomical data with social features, letting space enthusiasts track and collect meteor fireball events in an interactive, user-friendly interface.
+
+
 
 
 
