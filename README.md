@@ -9,7 +9,7 @@
 Fireball Finder is a full stack web app that allows users view NASA's fireball and bolide events and save an event details to their favorites. The user can also
 interact with the linear regression supervised learning model, a machine learning model, to see predictions of fireball and bolide events per year. 
 
-The web app can be visited [here](http://fireballfinder.com/)
+Youtube video of the web app  [Fireball Locator App Demo](https://youtu.be/XJpw-U-e_YE?si=BjbB7keiN9bPmtFd)
 
 ![Homepage](/static/images/homepage.gif "Homepage") <br />
 
